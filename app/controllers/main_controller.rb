@@ -1,5 +1,7 @@
 class MainController < ApplicationController
+  layout "main"
+
   def index
-    render plain: "Success"
+    render text: '', layout: true
   end
 end

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="500"
+   height="500"
+   viewBox="0 0 132.29166 132.29167"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="Logo.svg"
+   inkscape:export-filename="/home/milad/projects/files/PassMan/favicon.png"
+   inkscape:export-xdpi="3.0699999"
+   inkscape:export-ydpi="3.0699999">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#999999"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="243.34436"
+     inkscape:cy="234.22026"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     units="px"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:lockguides="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="951"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3715"
+       spacingx="6.6145832"
+       spacingy="6.6145832" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-164.70832)">
+    <path
+       style="fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
+       d="m 66.145832,171.32291 c 26.458333,19.84375 39.687498,19.84375 59.531248,19.84375 -13.22917,85.98958 -59.531248,99.21874 -59.531248,99.21874 0,0 -46.302082,-13.22916 -59.531249,-99.21874 19.84375,0 33.072916,0 59.531249,-19.84375 z"
+       id="path3717"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       sodipodi:nodetypes="ccccc"
+       inkscape:connector-curvature="0"
+       id="path4524"
+       d="m 66.145832,177.93749 c 23.51852,17.63889 35.277778,17.63889 52.916668,17.63889 -11.75926,76.43519 -52.916668,88.19444 -52.916668,88.19444 0,0 -41.157409,-11.75925 -52.916669,-88.19444 17.63889,0 29.398149,0 52.916669,-17.63889 z"
+       style="fill:#00804d;fill-opacity:1;stroke:none;stroke-width:0.23518519px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       style="fill:#ffcc00;fill-opacity:1;stroke:none;stroke-width:1.4857142"
+       d="M 250 100.71484 A 74.285707 74.285707 0 0 0 175.71484 175 A 74.285707 74.285707 0 0 0 233.30859 247.29297 L 233.30859 331.66602 L 195.59766 331.66602 L 195.59766 365 L 233.30859 365 L 233.30859 399.75781 L 266.64258 399.75781 L 266.64258 247.32422 A 74.285707 74.285707 0 0 0 324.28516 175 A 74.285707 74.285707 0 0 0 250 100.71484 z M 250 130 A 44.999992 44.999992 0 0 1 295 175 A 44.999992 44.999992 0 0 1 250 220 A 44.999992 44.999992 0 0 1 205 175 A 44.999992 44.999992 0 0 1 250 130 z "
+       transform="matrix(0.26458333,0,0,0.26458333,0,164.70832)"
+       id="path4545" />
+  </g>
+</svg>
