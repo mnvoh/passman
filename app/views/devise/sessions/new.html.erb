@@ -1,26 +1,29 @@
-<h2>Log in</h2>
+<div class="wrapper solid-bg">
+  <%= fa_icon 'user', class: 'login-header-icon' %>
+  <h2>Log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="form-group">
+      <%= fa_icon 'envelope', class: 'form-field-icon' %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
-  <% end -%>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
+    <div class="form-group">
+      <%= fa_icon 'key', class: 'form-field-icon' %>
+      <%= f.password_field :password, autocomplete: "current-password" %>
+    </div>
 
-<%= render "devise/shared/links" %>
+    <% if devise_mapping.rememberable? -%>
+      <div class="form-group borderless">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+    <% end -%>
+
+    <div class="actions">
+      <%= f.submit "Log in", class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</div>

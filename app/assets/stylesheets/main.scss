@@ -18,10 +18,15 @@ body {
 
 div.wrapper {
   width: 100%;
-  max-width: 40rem;
+  max-width: 30rem;
   padding: 2rem;
   margin: 0 auto;
   text-align: center;
+}
+div.wrapper.solid-bg {
+  background: #fff;
+  border: 1px solid #999;
+  border-radius: 1rem;
 }
 
 img.main-logo {
@@ -36,6 +41,7 @@ h1.title {
   font-size: 4rem;
   text-transform: uppercase;
   letter-spacing: 1rem;
+  margin-right: -1rem;
 }
 
 p.slogan {
@@ -45,10 +51,42 @@ p.slogan {
 }
 
 div.wrapper .btn {
-  width: 11.5rem;
-  margin: 1rem;
+  width: 100%;
+  margin: 0.5rem 0;
   font-size: 2rem;
 }
 div.wrapper .btn.btn-danger {
   width: 24rem;
+}
+
+
+/* ========= Devise ========= */
+i.login-header-icon {
+  font-size: 5rem;
+}
+
+i.form-field-icon {
+  font-size: 1.6rem;
+}
+
+div.form-group {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 0.5rem;
+  margin: 1rem 0;
+}
+div.form-group.borderless {
+  border: 0 none;
+  margin-bottom: 0;
+}
+div.form-group input {
+  background: #fff;
+  color: #333;
+  border: 0 none;
+  outline: 0 none;
+  width: calc(100% - 2rem);
+}
+div.form-group input[type='checkbox'] {
+  width: auto;
 }
