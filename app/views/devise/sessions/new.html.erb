@@ -6,6 +6,16 @@
 
   <div class='content'>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <% if flash[:alert] %>
+        <div class='alert alert-danger text-left'>
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+      <% if flash[:notice] %>
+        <div class='alert alert-warning text-left'>
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
       <div class="form-group">
         <%= icon 'fas', 'envelope fa-2x' %>
         <%=

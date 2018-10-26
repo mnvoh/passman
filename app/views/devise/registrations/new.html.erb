@@ -23,9 +23,6 @@
             placeholder: 'Password'
         %>
       </div>
-      <% if @minimum_password_length %>
-        <em class='text-muted text-left'><%= @minimum_password_length %> characters minimum</em>
-      <% end %><br />
 
       <div class="form-group">
         <%= icon 'fas', 'key fa-2x' %>
@@ -34,6 +31,11 @@
             placeholder: 'Repeat Password'
         %>
       </div>
+      <% if @minimum_password_length %>
+        <div class="text-left">
+          <em class='text-muted text-left'><%= @minimum_password_length %> characters minimum</em>
+        </div>
+      <% end %><br />
 
       <div class="actions">
         <%= f.submit "Sign up", class: 'btn btn-primary' %>

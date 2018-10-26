@@ -35,6 +35,9 @@ body.devise {
     padding: 0rem;
     margin: 1rem 0;
   }
+  div.form-group.field_with_errors {
+    border-color: #A00;
+  }
   div.form-group i {
     color: #999;
     vertical-align: middle;
@@ -48,7 +51,7 @@ body.devise {
     color: #333;
     border: 0 none;
     outline: 0 none;
-    width: calc(100% - 3rem);
+    width: calc(100% - 3.5rem);
     padding: 1rem;
   }
   div.form-group input[type='checkbox'] {
@@ -60,4 +63,7 @@ body.devise {
     font-size: 2rem;
   }
 
+  div#error-explanation h2 {
+    font-size: 2rem;
+  }
 }
