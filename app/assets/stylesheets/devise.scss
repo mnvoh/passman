@@ -1,55 +1,63 @@
 body.devise {
-  background: #ADC5D3;
+  background: #90ABBC;
   padding: 3rem;
 }
 
-div.wrapper {
-  width: 100%;
-  max-width: 30rem;
-  margin: 0 auto;
-  padding: 0;
-  text-align: center;
-  background: #fff;
-  border-radius: 0.5rem;
-  box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.5);
-  overflow: hidden;
-}
-div.wrapper div.header {
-  background: image-url('dialog-header-bg.png') no-repeat 50% 50%;
-  background-size: cover;
-  color: #fff;
-  padding: 3rem 1rem;
-}
-div.wrapper div.header i.header-icon {
-  margin-bottom: 1rem;
-}
-div.wrapper div.content {
-  padding: 2rem;
-}
+body.devise {
+  div.wrapper {
+    width: 100%;
+    max-width: 30rem;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    background: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+  }
+  div.wrapper div.header {
+    background: image-url('dialog-header-bg.png') no-repeat 50% 50%;
+    background-size: cover;
+    color: #fff;
+    padding: 3rem 1rem;
+  }
+  div.wrapper div.header i.header-icon {
+    margin-bottom: 1rem;
+  }
+  div.wrapper div.content {
+    padding: 2rem;
+  }
 
-div.form-group {
-  background: #fff;
-  border: 1px solid #999;
-  border-radius: 3px;
-  padding: 0rem;
-  margin: 1rem 0;
-}
-div.form-group i {
-  color: #999;
-  vertical-align: middle;
-}
-div.form-group.borderless {
-  border: 0 none;
-  margin-bottom: 0;
-}
-div.form-group input {
-  background: #fff;
-  color: #333;
-  border: 0 none;
-  outline: 0 none;
-  width: calc(100% - 3rem);
-  padding: 1rem;
-}
-div.form-group input[type='checkbox'] {
-  width: auto;
+  div.form-group {
+    background: #fff;
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding: 0rem;
+    margin: 1rem 0;
+  }
+  div.form-group i {
+    color: #999;
+    vertical-align: middle;
+  }
+  div.form-group.borderless {
+    border: 0 none;
+    margin-bottom: 0;
+  }
+  div.form-group input {
+    background: #fff;
+    color: #333;
+    border: 0 none;
+    outline: 0 none;
+    width: calc(100% - 3rem);
+    padding: 1rem;
+  }
+  div.form-group input[type='checkbox'] {
+    width: auto;
+  }
+  div.wrapper .btn {
+    width: 100%;
+    margin: 0.5rem 0;
+    font-size: 2rem;
+  }
+
 }

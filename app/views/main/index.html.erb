@@ -1,7 +1,7 @@
 <div class="wrapper">
   <%= image_tag 'passman.svg', title: 'PassMan', alt: 'PassMan', class: 'main-logo' %>
   <h1 class="title">PassMan</h1>
-  <p class="slogan">The password manager you need. And afford  🤑</p>  
+  <p class="slogan">The password manager you need, and afford  🤑</p>  
   <% if user_signed_in? %>
     <%= link_to 'Logout', :destroy_user_session, class: 'btn btn-danger', method: :delete %>
   <% else %>

@@ -6,40 +6,42 @@ body.main {
   background-size: cover;
 }
 
-div.wrapper {
-  width: 100%;
-  max-width: 30rem;
-  padding: 2rem;
-  margin: 0 auto;
-  text-align: center;
-}
+body.main {
+  div.wrapper {
+    width: 100%;
+    max-width: 30rem;
+    padding: 2rem;
+    margin: 0 auto;
+    text-align: center;
+  }
 
-img.main-logo {
-  width: 80%;
-  height: auto;
-  margin: 0 10%;
-}
+  img.main-logo {
+    width: 80%;
+    height: auto;
+    margin: 0 10%;
+  }
 
-h1.title {
-  color: #fff;
-  text-align: center;
-  font-size: 4rem;
-  text-transform: uppercase;
-  letter-spacing: 1rem;
-  margin-right: -1rem;
-}
+  h1.title {
+    color: #fff;
+    text-align: center;
+    font-size: 4rem;
+    text-transform: uppercase;
+    letter-spacing: 1rem;
+    margin-right: -1rem;
+  }
 
-p.slogan {
-  color: #ddd;
-  text-align: center;
-  font-size: 1.18rem;
-}
+  p.slogan {
+    color: #ddd;
+    text-align: center;
+    font-size: 1.18rem;
+  }
 
-div.wrapper .btn {
-  width: 100%;
-  margin: 0.5rem 0;
-  font-size: 2rem;
-}
-div.wrapper .btn.btn-danger {
-  width: 24rem;
+  div.wrapper .btn {
+    width: 100%;
+    margin: 0.5rem 0;
+    font-size: 2rem;
+  }
+  div.wrapper .btn.btn-danger {
+    width: 24rem;
+  }
 }
