@@ -1,0 +1,46 @@
+<header id="main-navigation" class="navbar mb-4">
+  <div class="container">
+    <a class="navbar-brand" href="<%= root_url %>">
+      <%= image_tag 'passman.svg', width: 48, height: 48 %>
+      PassMan
+    </a>
+
+    <button class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent20"
+            aria-controls="navbarSupportedContent20"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon1"><span></span><span></span><span></span></div>
+    </button>
+
+    <nav class="collapse navbar-collapse" id="navbarSupportedContent20">
+      <ul class="navbar-nav mr-auto">
+        <% if user_signed_in? %>
+
+        <% else %>
+          <li class="nav-item active">
+            <a class="nav-link" href="<%= root_path %>">
+              Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= new_user_session_path %>">
+              Login
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= new_user_registration_path %>">
+              Register
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= terms_of_service_path %>">
+              ToS and Privacy Policy
+            </a>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>

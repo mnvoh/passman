@@ -14,4 +14,15 @@
 //= require activestorage
 //= require turbolinks
 //= require jquery
+//= require popper
+//= require bootstrap
 //= require_tree .
+
+$(document).ready(function () {
+  $('.navbar-toggler').on('click', function () {
+    $('.animated-icon1').toggleClass('open');
+    $('.animated-icon3').toggleClass('open');
+    $('.animated-icon4').toggleClass('open');
+  });
+});
+
