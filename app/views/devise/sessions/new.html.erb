@@ -1,13 +1,13 @@
 <div class="wrapper">
   <div class='header'>
-    <%= fa_icon 'user', class: 'header-icon' %>
+    <%= icon 'far', 'user fa-5x', class: 'header-icon' %>
     <h2>Log in</h2>
   </div>
 
   <div class='content'>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-group">
-        <%= fa_icon 'envelope', class: 'form-field-icon' %>
+        <%= icon 'fas', 'envelope fa-2x' %>
         <%=
           f.email_field :email, autofocus: true, autocomplete: "email",
             placeholder: 'Email Address'
@@ -15,7 +15,7 @@
       </div>
 
       <div class="form-group">
-        <%= fa_icon 'key', class: 'form-field-icon' %>
+        <%= icon 'fas', 'key fa-2x' %>
         <%=
           f.password_field :password, autocomplete: "current-password",
             placeholder: 'Password'
