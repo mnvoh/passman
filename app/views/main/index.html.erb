@@ -1,0 +1,11 @@
+<div class="wrapper">
+  <%= image_tag 'passman.svg', title: 'PassMan', alt: 'PassMan', class: 'main-logo' %>
+  <h1 class="title">PassMan</h1>
+  <p class="slogan">The password manager you need. And afford  🤑</p>  
+  <% if user_signed_in? %>
+    <%= link_to 'Logout', :destroy_user_session, class: 'btn btn-danger', method: :delete %>
+  <% else %>
+    <%= link_to 'Login', :new_user_session, class: 'btn btn-primary' %>
+    <%= link_to 'Register', :new_user_registration, class: 'btn btn-success' %>
+  <% end %>
+</div>
