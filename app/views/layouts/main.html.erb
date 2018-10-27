@@ -11,7 +11,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class='main'>
+  <body class='main <%= 'background_image' if action_name == 'index' %>'>
     <%= render partial: 'shared/menu' %>
     <%= yield %>
   </body>
