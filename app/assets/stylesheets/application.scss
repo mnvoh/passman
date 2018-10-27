@@ -36,26 +36,30 @@ body {
 
 /* =================== Navigation ================= */
 #main-navigation {
-  background: rgba(0, 0, 0, 0.75);
+  background: #333;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   padding: 0.5rem 0;
+  z-index: 999;
 
   .nav-item {
     border-bottom: 1px solid #666;
-    padding: 0.5rem 0;
   }
   .nav-item:last-child {
     border-bottom: 0 none;
   }
   .nav-item a {
     color: #fff;
+    padding: 1rem 0;
   }
   .nav-item a:hover {
     color: $primary-color;
   }
+}
+body.background_image #main-navigation {
+  background-color: rgba(0, 0, 0, 0.25);
 }
 .navbar button, .navbar button:active, .navbar button:focus {
   outline: 0 none;
