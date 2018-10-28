@@ -17,28 +17,43 @@
     <nav class="collapse navbar-collapse" id="navbarSupportedContent20">
       <ul class="navbar-nav mr-auto">
         <% if user_signed_in? %>
-
+          <%=
+            render partial: 'shared/menu_entry', locals: {
+              url: passwords_path,
+              text: 'Passwords'
+            }
+          %>
+          <%=
+            render partial: 'shared/menu_entry', locals: {
+              url: new_password_path,
+              text: 'New Password'
+            }
+          %>
         <% else %>
-          <li class="nav-item active">
-            <a class="nav-link" href="<%= root_path %>">
-              Home
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<%= new_user_session_path %>">
-              Login
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<%= new_user_registration_path %>">
-              Register
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<%= terms_of_service_path %>">
-              ToS and Privacy Policy
-            </a>
-          </li>
+          <%=
+            render partial: 'shared/menu_entry', locals: {
+              url: root_path,
+              text: 'Home'
+            }
+          %>
+          <%=
+            render partial: 'shared/menu_entry', locals: {
+              url: new_user_session_path,
+              text: 'Login'
+            }
+          %>
+          <%=
+            render partial: 'shared/menu_entry', locals: {
+              url: new_user_registration_path,
+              text: 'Register'
+            }
+          %>
+          <%=
+            render partial: 'shared/menu_entry', locals: {
+              url: terms_of_service_path,
+              text: 'ToS / Privacy Policy'
+            }
+          %>
         <% end %>
       </ul>
     </nav>
