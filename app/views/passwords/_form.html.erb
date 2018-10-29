@@ -1,8 +1,6 @@
 <%= form_with(model: password, local: true) do |form| %>
   <% if password.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(password.errors.count, "error") %> prohibited this password from being saved:</h2>
-
+    <div id="error_explanation" class="alert alert-danger">
       <ul>
       <% password.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -11,7 +9,40 @@
     </div>
   <% end %>
 
+  <div class="form-group">
+    <label for="password_title"><%= t('title') %></label>
+    <%=
+      form.text_field :title, autofocus: true,  placeholder: t('title'),
+        class: 'form-control'
+    %>
+  </div>
+
+  <div class="form-group">
+    <label for="password_url"><%= t('login_url') %></label>
+    <%=
+      form.text_field :url, placeholder: t('login_url'), class: 'form-control'
+    %>
+  </div>
+
+  <div class="form-group">
+    <label for="password_password"><%= t('password') %></label>
+    <%=
+      form.text_field :password, placeholder: t('password'),
+        class: 'form-control'
+    %>
+  </div>
+
+  <div class="form-group">
+    <label for="password_description"><%= t('description') %></label>
+    <%=
+      form.text_area :description, placeholder: t('description'),
+        class: 'form-control', rows: 7
+    %>
+  </div>
+
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <%= link_to 'Back', passwords_path, class: 'btn btn-warning float-right' %>
   </div>
 <% end %>

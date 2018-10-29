@@ -31,3 +31,8 @@
 
 en:
   hello: "Hello world"
+  login_url: "Login URL"
+  password: "Password"
+  title: "Title"
+  description: "Description"
+  fields_encrypted_msg: "Password and Description will be securely encrypted."

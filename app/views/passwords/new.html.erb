@@ -1,5 +1,9 @@
-<h1>New Password</h1>
-
-<%= render 'form', password: @password %>
-
-<%= link_to 'Back', passwords_path %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>New Password</h1>
+      <p class="text-muted"><%= t('fields_encrypted_msg') %></p>
+      <%= render 'form', password: @password %>
+    </div>
+  </div>
+</div>
