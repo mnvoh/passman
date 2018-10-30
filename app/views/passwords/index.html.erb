@@ -13,15 +13,24 @@
             <th scope="col"><%= t('created_at') %></th>
             <th scope="col"><%= t('password_updated_at') %></th>
             <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
+          </tr>
+          <tr>
+            <th></th>
+            <th colspan="2">
+              <input type="text"
+                     id="passwords-title-filter"
+                     placeholder="<%= t('search_by_title') %>"
+                     class="form-control" />
+            </th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
 
         <tbody>
           <% @passwords.each do |password| %>
             <tr>
-              <td class="text-center">
+              <td class="text-center align-middle">
                 <% 
                   background_url = password.domain_logo || image_url('passman.svg')
                   background = "background-image: url(#{background_url});"
@@ -29,12 +38,29 @@
                 <span class="domain-logo" style="<%= background %>">
                 </span>
               </td>
-              <td><%= password.title %></td>
-              <td><%= password.created_at %></td>
-              <td><%= password.password_updated_at %></td>
-              <td><%= link_to 'Show', password %></td>
-              <td><%= link_to 'Edit', edit_password_path(password) %></td>
-              <td><%= link_to 'Destroy', password, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td class="align-middle"><%= password.title %></td>
+              <td class="align-middle"><%= password.created_at %></td>
+              <td class="align-middle"><%= password.password_updated_at %></td>
+              <td class="text-center align-middle">
+                <%=
+                  link_to icon('fas', 'eye fa-2x') + '<br>Show'.html_safe,
+                    password
+                %>
+              </td>
+              <!--
+              <td class="text-center align-middle">
+                <%=
+                  link_to icon('fas', 'edit fa-2x') + '<br>Edit'.html_safe,
+                    edit_password_path(password)
+                %>
+              </td>
+              <td class="text-center align-middle">
+                <%=
+                  link_to icon('fas', 'trash fa-2x') + '<br>Delete'.html_safe,
+                    password, method: :delete, data: { confirm: 'Are you sure?' }
+                %>
+              </td>
+              -->
             </tr>
           <% end %>
         </tbody>

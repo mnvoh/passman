@@ -17,6 +17,7 @@
 //= require popper
 //= require bootstrap
 //= require_tree .
+//= require passwords
 
 $(document).ready(function () {
   $('.navbar-toggler').on('click', function () {

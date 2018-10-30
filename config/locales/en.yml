@@ -48,4 +48,5 @@ en:
   password: "Password"
   password_updated_at: "Last Password Changed At"
   repeat_master_password: "Repeat Master Password"
+  search_by_title: "Search by Title"
   title: "Title"
