@@ -40,8 +40,6 @@ Rails.application.configure do
     port: ENV['PORT'],
   }
 
-
-
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
