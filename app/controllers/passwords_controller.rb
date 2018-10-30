@@ -27,12 +27,27 @@ class PasswordsController < ApplicationController
     @password = Password.new(password_params)
 
     respond_to do |format|
-      if @password.save
-        format.html { redirect_to @password, notice: 'Password was successfully created.' }
-        format.json { render :show, status: :created, location: @password }
-      else
+      if master_password_error == :weak
+        @password.errors.add(:base, :master_password_weak)
         format.html { render :new }
-        format.json { render json: @password.errors, status: :unprocessable_entity }
+      elsif master_password_error == :mismatch
+        @password.errors.add(:base, :master_password_mismatch)
+        format.html { render :new }
+      else
+        @password.encrypt_data(params[:master_password])
+        if @password.save
+          format.html {
+            redirect_to @password,
+            notice: 'Password was successfully created.'
+          }
+          format.json { render :show, status: :created, location: @password }
+        else
+          format.html { render :new }
+          format.json {
+            render json: @password.errors,
+            status: :unprocessable_entity
+          }
+        end
       end
     end
   end
@@ -42,11 +57,17 @@ class PasswordsController < ApplicationController
   def update
     respond_to do |format|
       if @password.update(password_params)
-        format.html { redirect_to @password, notice: 'Password was successfully updated.' }
+        format.html {
+          redirect_to @password,
+          notice: 'Password was successfully updated.'
+        }
         format.json { render :show, status: :ok, location: @password }
       else
         format.html { render :edit }
-        format.json { render json: @password.errors, status: :unprocessable_entity }
+        format.json {
+          render json: @password.errors,
+          status: :unprocessable_entity
+        }
       end
     end
   end
@@ -56,19 +77,39 @@ class PasswordsController < ApplicationController
   def destroy
     @password.destroy
     respond_to do |format|
-      format.html { redirect_to passwords_url, notice: 'Password was successfully destroyed.' }
+      format.html {
+        redirect_to passwords_url,
+        notice: 'Password was successfully destroyed.'
+      }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_password
       @password = Password.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def password_params
-      params.fetch(:password, {})
+      params.require(:password).permit(
+        :title,
+        :url,
+        :password,
+        :description,
+      )
+    end
+
+    def master_password_error
+      master = params[:master_password]
+      repeat = params[:repeat_master_password]
+      puts "--- #{master} --- #{repeat} ---"
+
+      if master.length < 6
+        :weak
+      elsif master != repeat
+        :mismatch
+      else
+        :ok
+      end
     end
 end

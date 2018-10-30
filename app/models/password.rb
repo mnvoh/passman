@@ -5,7 +5,7 @@ class Password < ApplicationRecord
   include Security
 
   before_save do |password|
-    unless /^#{FORMAT_STRING}/.match?(password.password)
+    unless /^#{ENCRYPTED_DATA_HEADER}/.match?(password.password)
       raise 'Attempting to save plain text password! Call `encrypt_password`' +
         ' with a master password first.'
     end

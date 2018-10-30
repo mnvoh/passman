@@ -10,6 +10,25 @@
   <% end %>
 
   <div class="form-group">
+    <label for="master_password"><%= t('master_password') %></label>
+    <input type="password"
+           id="master_password"
+           name="master_password"
+           placeholder="<%= t('master_password') %>"
+           autofocus="autofocus"
+           class="form-control" />
+    <p class="text-muted"><%= t('master_password_desc') %>
+  </div>
+  <div class="form-group">
+    <label for="master_password"><%= t('repeat_master_password') %></label>
+    <input type="password"
+           id="repeat_master_password"
+           name="repeat_master_password"
+           placeholder="<%= t('repeat_master_password') %>"
+           class="form-control" />
+  </div>
+
+  <div class="form-group">
     <label for="password_title"><%= t('title') %></label>
     <%=
       form.text_field :title, autofocus: true,  placeholder: t('title'),
