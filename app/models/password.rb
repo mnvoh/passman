@@ -21,8 +21,13 @@ class Password < ApplicationRecord
   end
 
   def encrypt_data(master_password)
-    self.password = encrypt(password, master_password, salt, iv)
+    new_password = encrypt(password, master_password, salt, iv)
+    if new_password != password
+      self.password_updated_at = DateTime.now
+    end
+    self.password = new_password
     self.description = encrypt(description, master_password, salt, iv)
+    nil
   end
 
   def decrypt_data(master_password)
