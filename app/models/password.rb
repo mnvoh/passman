@@ -20,6 +20,18 @@ class Password < ApplicationRecord
     end
   end
 
+  def domain_logo
+    begin
+      u = self.url
+      u = "http://#{u}" if URI.parse(u).scheme.nil?
+      host = URI.parse(u).host.downcase
+      host = host.start_with?('www.') ? host[4..-1] : host
+      "//logo.clearbit.com/#{host}"
+    rescue
+      # invalid url, so just return nil
+    end
+  end
+
   def encrypt_data(master_password)
     new_password = encrypt(password, master_password, salt, iv)
     if new_password != password

@@ -1,25 +1,48 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <p id="notice"><%= notice %></p>
 
-<h1>Passwords</h1>
+      <h1>Passwords</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col"></th>
+            <th scope="col"><%= t('title') %></th>
+            <th scope="col"><%= t('created_at') %></th>
+            <th scope="col"><%= t('password_updated_at') %></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
 
-  <tbody>
-    <% @passwords.each do |password| %>
-      <tr>
-        <td><%= link_to 'Show', password %></td>
-        <td><%= link_to 'Edit', edit_password_path(password) %></td>
-        <td><%= link_to 'Destroy', password, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <tbody>
+          <% @passwords.each do |password| %>
+            <tr>
+              <td class="text-center">
+                <% 
+                  background_url = password.domain_logo || image_url('passman.svg')
+                  background = "background-image: url(#{background_url});"
+                %>
+                <span class="domain-logo" style="<%= background %>">
+                </span>
+              </td>
+              <td><%= password.title %></td>
+              <td><%= password.created_at %></td>
+              <td><%= password.password_updated_at %></td>
+              <td><%= link_to 'Show', password %></td>
+              <td><%= link_to 'Edit', edit_password_path(password) %></td>
+              <td><%= link_to 'Destroy', password, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-<br>
+      <br>
 
-<%= link_to 'New Password', new_password_path %>
+      <%= link_to 'New Password', new_password_path %>
+    </div>
+  </div>
+</div>
