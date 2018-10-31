@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <% if notice %>
+        <p id="notice" class="alert alert-danger"><%= notice %></p>
+      <% end %>
+
+      <h2><%= t('enter_master_password_to_unlock') %></h2>
+
+      <form action="<%= show_password_path(@password) %>" method="post">
+        <div class="form-group">
+          <label for="master_password"><%= t('master_password') %>
+          <input type="password"
+                 id="master_password"
+                 name="master_password"
+                 class="form-control"
+                 autofocus="autofocus"
+                 placeholder="<%= t('master_password') %>" />
+        </div>
+        <input name="utf8" type="hidden" value="✓">
+        <input name="authenticity_token"
+               type="hidden"
+               value="<%= form_authenticity_token %>">
+        <div class="form-group">
+          <button class="btn btn-primary" type="submit">
+            <%= t('unlock') %>
+          </button>
+          <%= link_to 'Back', passwords_path, class: 'btn btn-warning' %>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

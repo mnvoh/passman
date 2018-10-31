@@ -41,6 +41,8 @@ module Security
       return data
     end
 
+    return '' if data.nil?
+
     cipher = OpenSSL::Cipher::AES.new(KEY_LENGTH, :CBC)
     cipher.encrypt
     cipher.key = psk_to_key(psk, salt)
@@ -54,7 +56,7 @@ module Security
   end
 
   def decrypt(data, psk, salt, iv)
-    unless /^#{ENCRYPTED_DATA_HEADER}/.match?(password)
+    unless /^#{ENCRYPTED_DATA_HEADER}/.match?(data)
       return data
     end
 

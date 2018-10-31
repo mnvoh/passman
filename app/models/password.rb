@@ -9,6 +9,8 @@ class Password < ApplicationRecord
       raise 'Attempting to save plain text password! Call `encrypt_password`' +
         ' with a master password first.'
     end
+    password = '' if password.nil?
+    description = '' if description.nil?
   end
 
   after_initialize do |user|
@@ -20,20 +22,24 @@ class Password < ApplicationRecord
     end
   end
 
-  def domain_logo
+  def domain
     begin
       u = self.url
       u = "http://#{u}" if URI.parse(u).scheme.nil?
       host = URI.parse(u).host.downcase
       host = host.start_with?('www.') ? host[4..-1] : host
-      "//logo.clearbit.com/#{host}"
     rescue
       # invalid url, so just return nil
     end
   end
 
+  def domain_logo
+    "//logo.clearbit.com/#{domain}" if domain
+  end
+
   def encrypt_data(master_password)
     new_password = encrypt(password, master_password, salt, iv)
+    # TODO: This is a bug!!!!!! probably
     if new_password != password
       self.password_updated_at = DateTime.now
     end
@@ -43,9 +49,12 @@ class Password < ApplicationRecord
   end
 
   def decrypt_data(master_password)
-    [
-      decrypt(password, master_password, salt, iv),
-      decrypt(description, master_password, salt, iv),
-    ]
+    decrypted_pass = decrypt(password, master_password, salt, iv)
+    decrypted_desc = decrypt(description, master_password, salt, iv)
+
+    decrypted_pass = '' if self.password.nil? || self.password.empty?
+    decrypted_desc = '' if self.description.nil? || self.description.empty?
+
+    [decrypted_pass, decrypted_desc]
   end
 end

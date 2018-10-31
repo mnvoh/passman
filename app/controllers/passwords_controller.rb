@@ -1,15 +1,20 @@
 class PasswordsController < ApplicationController
-  before_action :set_password, only: [:show, :edit, :update, :destroy]
+  before_action :set_password, only: [:unlock, :show, :edit, :update, :destroy]
 
-  # GET /passwords
-  # GET /passwords.json
   def index
     @passwords = Password.all
   end
 
-  # GET /passwords/1
-  # GET /passwords/1.json
+  def unlock
+  end
+
   def show
+    master_password = params[:master_password]
+    @decrypted_data = @password.decrypt_data(master_password)
+    if @decrypted_data.any? { |item| item.nil? }
+      flash[:notice] = I18n.t('invalid_master_password')
+      redirect_to unlock_password_path(@password)
+    end
   end
 
   # GET /passwords/new
