@@ -1,94 +1,65 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <% if alert %>
-        <p id="alert" class="alert alert-danger"><%= alert %></p>
-      <% end %>
-
-      <% if notice %>
-        <p id="notice" class="alert alert-success"><%= notice %></p>
-      <% end %>
-
-      <h1>Passwords</h1>
-
-      <table class="table table-striped table-bordered">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col"></th>
-            <th scope="col"><%= t('title') %></th>
-            <th scope="col"><%= t('url') %></th>
-            <th scope="col"><%= t('created_at') %></th>
-            <th scope="col"><%= t('password_updated_at') %></th>
-            <th scope="col"></th>
-          </tr>
-          <tr>
-            <th colspan="9">
-              <div class="row">
-                <div class="col-6">
-                  <input type="text"
-                         id="passwords-title-filter"
-                         placeholder="<%= t('search_by_title') %>"
-                         class="form-control" />
-                </div>
-              <div class="col-6">
-                <input type="text"
-                       id="url-filter"
-                       placeholder="<%= t('search_by_url') %>"
-                       class="form-control" />
-              </div>
-            </th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @passwords.each do |password| %>
-            <tr>
-              <td class="text-center align-middle">
-                <% 
-                  background_url = password.domain_logo || image_url('passman.svg')
-                  background = "background-image: url(#{background_url});"
-                %>
-                <span class="domain-logo" style="<%= background %>">
-                </span>
-              </td>
-              <td class="align-middle"><%= password.title %></td>
-              <td class="align-middle">
-                <%= link_to password.url, password.url unless password.domain.nil? %>
-              </td>
-              <td class="align-middle">
-                <%= format_datetime(password.created_at) %>
-              </td>
-              <td class="align-middle">
-                <%= format_datetime(password.password_updated_at) %>
-              </td>
-              <td class="text-center align-middle">
-                <%=
-                  link_to icon('fas', 'eye fa-2x') + '<br>Show'.html_safe,
-                    password
-                %>
-              </td>
-              <!--
-              <td class="text-center align-middle">
-                <%=
-                  link_to icon('fas', 'edit fa-2x') + '<br>Edit'.html_safe,
-                    edit_password_path(password)
-                %>
-              </td>
-              <td class="text-center align-middle">
-                <%=
-                  link_to icon('fas', 'trash fa-2x') + '<br>Delete'.html_safe,
-                    password, method: :delete, data: { confirm: 'Are you sure?' }
-                %>
-              </td>
-              -->
-            </tr>
+      <div class="row">
+        <div class="col">
+          <% if alert %>
+            <p id="alert" class="alert alert-danger"><%= alert %></p>
           <% end %>
-        </tbody>
-      </table>
 
-      <br>
+          <% if notice %>
+            <p id="notice" class="alert alert-success"><%= notice %></p>
+          <% end %>
 
-      <%= link_to 'New Password', new_password_path %>
+          <h1>
+            <%= t('passwords') %>
+            <%= link_to icon('fas', 'plus-circle'), new_password_path %>
+          </h1>
+        </div>
+      </div>
+
+      <div class="row filters">
+        <div class="col-6">
+          <input type="text"
+                 id="passwords-title-filter"
+                 placeholder="<%= t('search_by_title') %>"
+                 class="form-control" />
+        </div>
+        <div class="col-6">
+          <input type="text"
+                 id="url-filter"
+                 placeholder="<%= t('search_by_url') %>"
+                 class="form-control" />
+        </div>
+      </div>
+
+      <div class="row passwords my-4">
+        <% @passwords.each do |p| %>
+          <div class="col-sm-12 col-md-6">
+            <div class="password mb-4 p-2">
+              <a href="<%= show_password_path(p) %>"
+                 title="<%= p.title || t('untitled') %>"
+                 class="show-password-link">
+              </a>
+              <% 
+                background_url = p.domain_logo || image_url('passman.svg')
+                background = "background-image: url(#{background_url});"
+              %>
+              <span class="domain-logo float-left mr-2" style="<%= background %>">
+              </span>
+              <div class="password-details d-inline-block">
+                <h4>
+                  <%= p.title || t('untitled') %>
+                </h4>
+                <p class="mb-0 text-muted">
+                  <%= p.domain %>
+                </p>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

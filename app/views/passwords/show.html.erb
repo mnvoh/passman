@@ -25,6 +25,12 @@
       <table class="table thead-dark">
         <tbody>
           <tr>
+            <th scope="row"><%= t('url') %></th>
+            <td>
+              <%= link_to @password.url, @password.url, target: '_blank' %>
+            </td>
+          </tr>
+          <tr>
             <th scope="row"><%= t('password') %></th>
             <td><%= @decrypted_data[0] %>
           </tr>
