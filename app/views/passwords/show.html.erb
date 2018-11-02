@@ -18,11 +18,26 @@
 
       <div class="clearfix"></div>
 
-      <div class="password-display mb-5">
-        <span><%= @decrypted_data[0] %></span>
-        <p class="description"><%= @decrypted_data[1] %></p>
-        <div class="clearfix"></div>
-      </div>
+      <table class="table thead-dark">
+        <tbody>
+          <tr>
+            <th scope="row"><%= t('password') %></th>
+            <td><%= @decrypted_data[0] %>
+          </tr>
+          <tr>
+            <th scope="row"><%= t('description') %></th>
+            <td><%= @decrypted_data[1] %></td>
+          </tr>
+          <tr>
+            <th scope="row"><%= t('created_at') %></th>
+            <td><%= format_datetime(@password.created_at) %></td>
+          </tr>
+          <tr>
+            <th scope="row"><%= t('last_password_changed_at') %></th>
+            <td><%= format_datetime(@password.password_updated_at) %></td>
+          </tr>
+        </tbody>
+      </table>
 
       <%=
         link_to 'Edit', edit_password_path(@password),
