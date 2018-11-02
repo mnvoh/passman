@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   root to: 'main#index'
   get 'terms-of-service', to: 'main#tos'
 
-  resources :passwords, except: [:show] do
+  resources :passwords, except: [:show], constraints: { id: /[0-9]+/ } do
     member do
       post '', action: 'show', as: 'show'
       get '', action: 'unlock', as: 'unlock'
