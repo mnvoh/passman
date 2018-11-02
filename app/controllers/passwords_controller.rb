@@ -40,28 +40,18 @@ class PasswordsController < ApplicationController
   def create
     @password = Password.new(password_params)
 
-    respond_to do |format|
-      if master_password_error == :weak
-        @password.errors.add(:base, :master_password_weak)
-        format.html { render :new }
-      elsif master_password_error == :mismatch
-        @password.errors.add(:base, :master_password_mismatch)
-        format.html { render :new }
+    if master_password_error == :weak
+      @password.errors.add(:base, :master_password_weak)
+      render :new
+    elsif master_password_error == :mismatch
+      @password.errors.add(:base, :master_password_mismatch)
+      render :new
+    else
+      @password.encrypt_data(params[:master_password])
+      if @password.save
+        redirect_to @password, notice: 'Password was successfully created.'
       else
-        @password.encrypt_data(params[:master_password])
-        if @password.save
-          format.html {
-            redirect_to @password,
-            notice: 'Password was successfully created.'
-          }
-          format.json { render :show, status: :created, location: @password }
-        else
-          format.html { render :new }
-          format.json {
-            render json: @password.errors,
-            status: :unprocessable_entity
-          }
-        end
+        render :new
       end
     end
   end
@@ -70,11 +60,11 @@ class PasswordsController < ApplicationController
   def update
     if master_password_error == :weak
       flash[:alert] = I18n.t('master_password_weak')
-      session[:master_password] = params[:master_password]
+      session[:master_password] = params[:old_master_password]
       redirect_to edit_password_path(@password)
     elsif master_password_error == :mismatch
       flash[:alert] = I18n.t('master_password_mismatch')
-      session[:master_password] = params[:master_password]
+      session[:master_password] = params[:old_master_password]
       redirect_to edit_password_path(@password)
     else
       @password.title = params[:password][:title]
@@ -86,9 +76,8 @@ class PasswordsController < ApplicationController
       if @password.save
         redirect_to @password, notice: 'Password was successfully updated.'
       else
-        decrypt_data(params[:master_password])
         flash[:alert] = password.errors
-        session[:master_password] = params[:master_password]
+        session[:master_password] = params[:old_master_password]
         redirect_to edit_password_path(@password)
       end
     end
