@@ -1,8 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col">
+      <% if alert %>
+        <p id="alert" class="alert alert-danger"><%= alert %></p>
+      <% end %>
+
       <% if notice %>
-        <p id="notice" class="alert alert-danger"><%= notice %></p>
+        <p id="notice" class="alert alert-success"><%= notice %></p>
       <% end %>
 
       <h2><%= t('enter_master_password_to_unlock') %></h2>

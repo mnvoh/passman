@@ -69,11 +69,11 @@ class PasswordsController < ApplicationController
   # PATCH/PUT /passwords/1
   def update
     if master_password_error == :weak
-      flash[:notice] = I18n.t('master_password_weak')
+      flash[:alert] = I18n.t('master_password_weak')
       session[:master_password] = params[:master_password]
       redirect_to edit_password_path(@password)
     elsif master_password_error == :mismatch
-      flash[:notice] = I18n.t('master_password_mismatch')
+      flash[:alert] = I18n.t('master_password_mismatch')
       session[:master_password] = params[:master_password]
       redirect_to edit_password_path(@password)
     else
@@ -87,7 +87,7 @@ class PasswordsController < ApplicationController
         redirect_to @password, notice: 'Password was successfully updated.'
       else
         decrypt_data(params[:master_password])
-        flash[:notice] = password.errors
+        flash[:alert] = password.errors
         session[:master_password] = params[:master_password]
         redirect_to edit_password_path(@password)
       end
