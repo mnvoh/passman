@@ -39,10 +39,19 @@
         </tbody>
       </table>
 
-      <%=
-        link_to 'Edit', edit_password_path(@password),
-          class: 'btn btn-success'
-        %>
+      <form action="<%= edit_password_path(@password) %>"
+            method="post"
+            class="d-inline">
+        <input name="authenticity_token"
+               type="hidden"
+               value="<%= form_authenticity_token %>">
+        <input type="hidden"
+               name="master_password"
+               value="<%= @master_password %>" />
+        <input type="submit"
+               class="btn btn-success"
+               value="<%= t('edit') %>" />
+      </form>
       <%= link_to 'Back', passwords_path, class: 'btn btn-warning' %>
     </div>
   </div>

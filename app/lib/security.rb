@@ -41,7 +41,9 @@ module Security
       return data
     end
 
-    return '' if data.nil?
+    if psk.nil? || psk.empty?
+      return nil
+    end
 
     cipher = OpenSSL::Cipher::AES.new(KEY_LENGTH, :CBC)
     cipher.encrypt

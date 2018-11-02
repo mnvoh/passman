@@ -9,8 +9,8 @@ class PasswordsController < ApplicationController
   end
 
   def show
-    master_password = params[:master_password]
-    @decrypted_data = @password.decrypt_data(master_password)
+    @master_password = params[:master_password]
+    @decrypted_data = @password.decrypt_data(@master_password)
     if @decrypted_data.any? { |item| item.nil? }
       flash[:notice] = I18n.t('invalid_master_password')
       redirect_to unlock_password_path(@password)
@@ -22,8 +22,17 @@ class PasswordsController < ApplicationController
     @password = Password.new
   end
 
-  # GET /passwords/1/edit
+  # POST /passwords/1/edit
   def edit
+    @master_password = params[:master_password] || session[:master_password]
+
+    if @master_password.nil? || @master_password.empty?
+      redirect_to unlock_password_path(@password)
+      return
+    end
+
+    session[:master_password] = nil
+    decrypt_data(@master_password)
   end
 
   # POST /passwords
@@ -58,21 +67,29 @@ class PasswordsController < ApplicationController
   end
 
   # PATCH/PUT /passwords/1
-  # PATCH/PUT /passwords/1.json
   def update
-    respond_to do |format|
-      if @password.update(password_params)
-        format.html {
-          redirect_to @password,
-          notice: 'Password was successfully updated.'
-        }
-        format.json { render :show, status: :ok, location: @password }
+    if master_password_error == :weak
+      flash[:notice] = I18n.t('master_password_weak')
+      session[:master_password] = params[:master_password]
+      redirect_to edit_password_path(@password)
+    elsif master_password_error == :mismatch
+      flash[:notice] = I18n.t('master_password_mismatch')
+      session[:master_password] = params[:master_password]
+      redirect_to edit_password_path(@password)
+    else
+      @password.title = params[:password][:title]
+      @password.url = params[:password][:url]
+      @password.password = params[:password][:password]
+      @password.description = params[:password][:description]
+      @password.encrypt_data(params[:master_password])
+
+      if @password.save
+        redirect_to @password, notice: 'Password was successfully updated.'
       else
-        format.html { render :edit }
-        format.json {
-          render json: @password.errors,
-          status: :unprocessable_entity
-        }
+        decrypt_data(params[:master_password])
+        flash[:notice] = password.errors
+        session[:master_password] = params[:master_password]
+        redirect_to edit_password_path(@password)
       end
     end
   end
@@ -91,6 +108,7 @@ class PasswordsController < ApplicationController
   end
 
   private
+
     def set_password
       @password = Password.find(params[:id])
     end
@@ -116,5 +134,22 @@ class PasswordsController < ApplicationController
       else
         :ok
       end
+    end
+
+    def decrypt_data(master_password)
+      if @password.nil?
+        return
+      end
+
+      decrypted_data = @password.decrypt_data(master_password)
+
+      if decrypted_data.any? { |item| item.nil? }
+        flash[:notice] = I18n.t('invalid_master_password')
+        redirect_to unlock_password_path(@password)
+        return
+      end
+
+      @password.password = decrypted_data[0]
+      @password.description = decrypted_data[1]
     end
 end

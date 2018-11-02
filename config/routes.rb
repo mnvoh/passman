@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     member do
       post '', action: 'show', as: 'show'
       get '', action: 'unlock', as: 'unlock'
+      post 'edit', action: 'edit', as: 'edit'
     end
   end
 end

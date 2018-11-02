@@ -1,6 +1,13 @@
-<h1>Editing Password</h1>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1><%= t('edit_password') %></h1>
 
-<%= render 'form', password: @password %>
+      <% if notice %>
+        <p id="notice" class="alert alert-danger"><%= notice %></p>
+      <% end %>
 
-<%= link_to 'Show', @password %> |
-<%= link_to 'Back', passwords_path %>
+      <%= render 'form', password: @password %>
+    </div>
+  </div>
+</div>
