@@ -55,5 +55,6 @@ en:
   password_updated_at: "Last Password Changed At"
   repeat_master_password: "Repeat Master Password"
   search_by_title: "Search by Title"
+  search_by_url: "Search by URL"
   title: "Title"
   unlock: "Unlock"

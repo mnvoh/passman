@@ -16,20 +16,27 @@
           <tr>
             <th scope="col"></th>
             <th scope="col"><%= t('title') %></th>
+            <th scope="col"><%= t('url') %></th>
             <th scope="col"><%= t('created_at') %></th>
             <th scope="col"><%= t('password_updated_at') %></th>
             <th scope="col"></th>
           </tr>
           <tr>
-            <th></th>
-            <th colspan="2">
-              <input type="text"
-                     id="passwords-title-filter"
-                     placeholder="<%= t('search_by_title') %>"
-                     class="form-control" />
+            <th colspan="9">
+              <div class="row">
+                <div class="col-6">
+                  <input type="text"
+                         id="passwords-title-filter"
+                         placeholder="<%= t('search_by_title') %>"
+                         class="form-control" />
+                </div>
+              <div class="col-6">
+                <input type="text"
+                       id="url-filter"
+                       placeholder="<%= t('search_by_url') %>"
+                       class="form-control" />
+              </div>
             </th>
-            <th></th>
-            <th></th>
           </tr>
         </thead>
 
@@ -45,8 +52,15 @@
                 </span>
               </td>
               <td class="align-middle"><%= password.title %></td>
-              <td class="align-middle"><%= password.created_at %></td>
-              <td class="align-middle"><%= password.password_updated_at %></td>
+              <td class="align-middle">
+                <%= link_to password.url, password.url unless password.domain.nil? %>
+              </td>
+              <td class="align-middle">
+                <%= format_datetime(password.created_at) %>
+              </td>
+              <td class="align-middle">
+                <%= format_datetime(password.password_updated_at) %>
+              </td>
               <td class="text-center align-middle">
                 <%=
                   link_to icon('fas', 'eye fa-2x') + '<br>Show'.html_safe,
