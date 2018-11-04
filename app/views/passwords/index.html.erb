@@ -27,8 +27,8 @@
         </div>
         <div class="col-6">
           <input type="text"
-                 id="url-filter"
-                 placeholder="<%= t('search_by_url') %>"
+                 id="domain-filter"
+                 placeholder="<%= t('search_by_domain') %>"
                  class="form-control" />
         </div>
       </div>
@@ -51,7 +51,7 @@
                 <h4>
                   <%= p.title || t('untitled') %>
                 </h4>
-                <p class="mb-0 text-muted">
+                <p class="domain mb-0 text-muted">
                   <%= p.domain %>
                 </p>
               </div>

@@ -1,31 +1,37 @@
 $(document).ready(function() {
   $('#passwords-title-filter').keyup(function() {
-    var query = $(this).val().toLowerCase();
-    var $table = $(this).closest('table.table');
-    filterTable(query, $table, 'td:nth-child(2)');
+    var query = $(this).val().toLowerCase(); 
+    filterPasswords(query, 'title');
   });
 
-  $('#url-filter').keyup(function() {
-    var query = $(this).val().toLowerCase();
-    var $table = $(this).closest('table.table');
-    filterTable(query, $table, 'td:nth-child(3)');
+  $('#domain-filter').keyup(function() {
+    var query = $(this).val().toLowerCase(); 
+    filterPasswords(query, 'domain');
   });
 });
 
-function filterTable(query, $targetTable, targetSelector) {
+function filterPasswords(query, type = 'title') {
   if (query.length <= 0) {
-    $targetTable.children('tbody').children('tr').each(function(index) {
-      $(this).removeClass('hidden');
-    });
+    $('div.password').parent().removeClass('hidden');
   }
   else {
-    $targetTable.children('tbody').children('tr').each(function(index) {
-      var content = $(this).children(targetSelector).html().trim(); 
+    var contentSelector = null;
+    if (type === 'title')
+      contentSelector = 'h4';
+    else if(type === 'domain')
+      contentSelector = 'p.domain';
+
+    if (contentSelector === null)
+      return;
+
+    $('div.password').each(function(index) {
+      var content = $(this).find(contentSelector).html().trim(); 
+      console.log(content);
       if(content.toLowerCase().indexOf(query) !== -1) {
-        $(this).removeClass('hidden');
+        $(this).parent().removeClass('hidden');
       }
       else {
-        $(this).addClass('hidden');
+        $(this).parent().addClass('hidden');
       }
     });
   }
