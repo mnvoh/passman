@@ -42,8 +42,7 @@
                  class="show-password-link">
               </a>
               <% 
-                background_url = p.domain_logo || image_url('passman.svg')
-                background = "background-image: url(#{background_url});"
+                background = "background-image: url(#{brand_logo(p.domain)});"
               %>
               <span class="domain-logo float-left mr-2" style="<%= background %>">
               </span>

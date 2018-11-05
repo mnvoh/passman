@@ -33,10 +33,6 @@ class Password < ApplicationRecord
     end
   end
 
-  def domain_logo
-    "//logo.clearbit.com/#{domain}" if domain
-  end
-
   def encrypt_data(master_password)
     new_password = encrypt(password, master_password, salt, iv)
     # TODO: This is a bug!!!!!! probably
