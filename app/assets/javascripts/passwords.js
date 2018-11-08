@@ -8,6 +8,18 @@ $(document).ready(function() {
     var query = $(this).val().toLowerCase(); 
     filterPasswords(query, 'domain');
   });
+
+  $('.copy-text').click(function() {
+    var elementId = $(this).data('for');
+    $('#' + elementId).select();
+    document.execCommand('copy');
+    $('#' + elementId).tooltip();
+  });
+
+  $('input[type=range]').on('change input', function() {
+    var target = $(this).data('target');
+    $('#' + target).html($(this).val());
+  });
 });
 
 function filterPasswords(query, type = 'title') {

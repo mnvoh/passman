@@ -19,6 +19,12 @@
         <% if user_signed_in? %>
           <%=
             render partial: 'shared/menu_entry', locals: {
+              url: '',
+              text: t('password_generator')
+            }
+          %>
+          <%=
+            render partial: 'shared/menu_entry', locals: {
               url: passwords_path,
               text: 'Passwords'
             }

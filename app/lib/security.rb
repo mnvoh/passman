@@ -13,8 +13,8 @@ module Security
 
   def random(
     length,
-    lowercase = true,
-    uppercase = true,
+    lower = true,
+    upper = true,
     numbers = true,
     symbols = true
   )
@@ -23,8 +23,8 @@ module Security
     end
     
     charset = []
-    charset += LOWERCASE_CHARS if lowercase
-    charset += UPPERCASE_CHARS if uppercase
+    charset += LOWERCASE_CHARS if lower
+    charset += UPPERCASE_CHARS if upper
     charset += NUMBERS if numbers
     charset += SYMBOLS if symbols
 
@@ -33,7 +33,45 @@ module Security
       result += charset[SecureRandom.random_number(charset.length)]
     end
 
+    while !(missing = missing_charset(result, lower, upper, numbers, symbols)).nil?
+      if missing == :lower
+        missing_character = LOWERCASE_CHARS[
+          SecureRandom.random_number(LOWERCASE_CHARS.length)
+        ]
+      elsif missing == :upper
+        missing_character = UPPERCASE_CHARS[
+          SecureRandom.random_number(UPPERCASE_CHARS.length)
+        ]
+      elsif missing == :numbers
+        missing_character = NUMBERS[
+          SecureRandom.random_number(NUMBERS.length)
+        ]
+      elsif missing == :symbols
+        missing_character = SYMBOLS[
+          SecureRandom.random_number(SYMBOLS.length)
+        ]
+      end
+      result = result[1..-1] + missing_character 
+    end
     result
+  end
+
+  def missing_charset(string, lower, upper, numbers, symbols)
+    if lower && !LOWERCASE_CHARS.any? { |c| string.include?(c) }
+      return :lower
+    end
+
+    if upper && !UPPERCASE_CHARS.any? { |c| string.include?(c) }
+      return :upper
+    end
+
+    if numbers && !NUMBERS.any? { |c| string.include?(c) }
+      return :numbers
+    end
+
+    if symbols && !SYMBOLS.any? { |c| string.include?(c) }
+      return :symbols
+    end
   end
 
   def encrypt(data, psk, salt, iv)

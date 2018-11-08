@@ -1,4 +1,6 @@
 class PasswordsController < ApplicationController
+  include Security
+
   before_action :set_password, only: [:unlock, :show, :edit, :update, :destroy]
 
   def index
@@ -88,6 +90,37 @@ class PasswordsController < ApplicationController
     @password.destroy
     redirect_to passwords_url,
       notice: 'Password was successfully destroyed.'
+  end
+
+  def generator
+    @length = (params[:length] || 12).to_i
+    @lower = params[:lower] == 'true'
+    @upper = params[:upper] == 'true'
+    @numbers = params[:numbers] == 'true'
+    @symbols = params[:symbols] == 'true'
+
+    unless [@lower, @upper, @numbers, @symbols].any? { |c| c }
+      @lower = @upper = @numbers = @symbols = true
+    end
+
+    @random_string = random(@length, @lower, @upper, @numbers, @symbols)
+  end
+
+  def generate
+    length = (params[:length] || 12).to_i
+    lowercase = params[:lower] == 'true'
+    uppercase = params[:upper] == 'true'
+    numbers = params[:numbers] == 'true'
+    symbols = params[:symbols] == 'true'
+
+    unless [lowercase, uppercase, numbers, symbols].any? { |a| a == true }
+      render json: { error: 'At least one character set must be selected' },
+        status: 400 and return
+    end
+
+    random_string = random(length, lowercase, uppercase, numbers, symbols) 
+
+    render json: { random: random_string }
   end
 
   private
