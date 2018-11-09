@@ -1,5 +1,6 @@
 require 'openssl'
 require 'base64'
+require 'zxcvbn'
 
 class Password < ApplicationRecord
   include Security
@@ -35,8 +36,8 @@ class Password < ApplicationRecord
 
   def encrypt_data(master_password)
     new_password = encrypt(password, master_password, salt, iv)
-    # TODO: This is a bug!!!!!! probably
     if new_password != password
+      self.password_strength = Zxcvbn.test(self.password).score
       self.password_updated_at = DateTime.now
     end
     self.password = new_password
