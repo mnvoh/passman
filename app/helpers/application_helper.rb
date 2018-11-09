@@ -34,4 +34,20 @@ module ApplicationHelper
 
     "/images/logos/#{domain}.png"
   end
+
+  def five_star(value)
+    title = I18n.t('password_strength') + ": #{value + 1}/5"
+    five_star_html = '<span class="five-star float-right" title="' + title + '">'
+
+    [0, 1, 2, 3, 4].each do |i|
+      if i <= value
+        five_star_html += '<i class="fas fa-star filled"></i>'
+      else
+        five_star_html += '<i class="fas fa-star hollow"></i>'
+      end
+    end
+
+    five_star_html += '</span>'
+    five_star_html.html_safe
+  end
 end

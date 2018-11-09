@@ -143,3 +143,15 @@ body.background_image #main-navigation {
 td {
   vertical-align: middle;
 }
+
+/* =========================== GENERAL ====================== */
+.five-star {
+  position: relative;
+  z-index: 2;
+}
+.five-star .filled {
+  color: #fc0;
+}
+.five-star .hollow {
+  color: #333;
+}

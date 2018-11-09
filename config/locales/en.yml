@@ -25,6 +25,7 @@ en:
   password: "Password"
   passwords: "Passwords"
   password_generator: "Password Generator"
+  password_strength: "Password Strength"
   password_updated_at: "Last Password Changed At"
   repeat_master_password: "Repeat Master Password"
   search_by_domain: "Search by Domain"
