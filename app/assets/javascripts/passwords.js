@@ -11,14 +11,42 @@ $(document).ready(function() {
 
   $('.copy-text').click(function() {
     var elementId = $(this).data('for');
-    $('#' + elementId).select();
+    var element = $('#' + elementId);
+    element.select();
     document.execCommand('copy');
-    $('#' + elementId).tooltip();
+    $('.copied-to-clipboard').fadeIn(300);
+    setTimeout(function() {
+      $('.copied-to-clipboard').fadeOut(1000);
+    }, 3000);
   });
 
   $('input[type=range]').on('change input', function() {
     var target = $(this).data('target');
-    $('#' + target).html($(this).val());
+    $('.' + target).html($(this).val());
+  });
+
+  $('#generate-password-form').submit(function() {
+    var lower = $(this).find('input[name=lower]').prop('checked');
+    var upper = $(this).find('input[name=upper]').prop('checked');
+    var numbers = $(this).find('input[name=numbers]').prop('checked');
+    var symbols = $(this).find('input[name=symbols]').prop('checked');
+    var length = $(this).find('input[name=length]').val();
+
+    var url = $(this).data('async-action');
+    var data = {
+      lower: lower,
+      upper: upper,
+      numbers: numbers,
+      symbols: symbols,
+      length: length,
+    };
+
+    var _this = this;
+    $.get(url, data, function(data) {
+      $('#generated-password').val(data.random);
+    });
+
+    return false;
   });
 });
 

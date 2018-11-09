@@ -13,6 +13,30 @@
 
   <body class='application'>
     <%= render partial: 'shared/menu' %>
+
+    <div id="password-generator-modal" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"><%= t('password_generator') %></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <%= render partial: 'passwords/password_generator_form', locals: {
+              hide_header: true,
+              lower: true,
+              upper: true,
+              numbers: true,
+              symbols: true,
+              length: 12
+            }%>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <%= yield %>
   </body>
 </html>

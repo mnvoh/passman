@@ -17,12 +17,15 @@
     <nav class="collapse navbar-collapse" id="navbarSupportedContent20">
       <ul class="navbar-nav mr-auto">
         <% if user_signed_in? %>
-          <%=
-            render partial: 'shared/menu_entry', locals: {
-              url: '',
-              text: t('password_generator')
-            }
-          %>
+          <li class="nav-item active">
+            <a class="nav-link"
+               href="<%= generator_passwords_path %>"
+               title="<%= t('password_generator') %>"
+               data-toggle="modal"
+               data-target="#password-generator-modal">
+              <%= t('password_generator') %>
+            </a>
+          </li>
           <%=
             render partial: 'shared/menu_entry', locals: {
               url: passwords_path,

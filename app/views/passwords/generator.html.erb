@@ -3,78 +3,7 @@
     <div class="col-8 offset-2">
       <div class="card">
         <div class="card-body">
-          <h1><%= t('password_generator') %></h1>
-          <hr />
-          <form action="<%= generator_passwords_path %>" method="get">
-            <div class="row">
-              <div class="col-sm-3">
-                <input id="lower"
-                       type="checkbox"
-                       name="lower"
-                       value="true"
-                       <%= 'checked' if @lower %>/>
-                <label for="lower">a-z</label>
-              </div>
-              <div class="col-sm-3">
-                <input id="upper"
-                       type="checkbox"
-                       name="upper"
-                       value="true"
-                       <%= 'checked' if @upper %>/>
-                <label for="upper">A-Z</label>
-              </div>
-              <div class="col-sm-3">
-                <input id="numbers"
-                       type="checkbox"
-                       name="numbers"
-                       value="true"
-                       <%= 'checked' if @numbers %>/>
-                <label for="numbers">0-9</label>
-              </div>
-              <div class="col-sm-3">
-                <input id="symbols"
-                       type="checkbox"
-                       name="symbols"
-                       value="true"
-                       <%= 'checked' if @symbols %>/>
-                <label for="symbols">!@#$</label>
-              </div>
-              <div class="col-sm-12">
-                <input class="form-control"
-                       type="range"
-                       name="length"
-                       min="6"
-                       max="32"
-                       data-target="length-label"
-                       value="<%= @length %>">
-                <label>
-                  <%= t('length') %>
-                  <span id="length-label" class="text-primary"><%= @length %></span>
-                </label>
-              </div>
-            </div>
-
-            <div class="text-center mt-4">
-              <button type="submit" class="btn btn-success">
-                <%= t('generate') %>
-              </button>
-            </div>
-          </form>
-
-          <hr />
-
-          <div class="text-center">
-            <input id="generated-password"
-                   class="d-inline-block border py-4 font-weight-bold text-monospace text-primary form-control"
-                   value="<%= @random_string %>"
-                   readonly
-                   title="<%= t('copied') %>"
-                   data-toggle="tooltip"/>
-            <br/>
-            <a href="javascript:;" class="copy-text" data-for="generated-password">
-              <%= t('copy') %>
-            </a>
-          </div>
+          <%= render 'password_generator_form' %>
         </div>
       </div>
     </div>
