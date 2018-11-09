@@ -16,6 +16,7 @@
 //= require jquery
 //= require popper
 //= require bootstrap
+//= require zxcvbn/dist/zxcvbn
 //= require_tree .
 
 $(document).ready(function () {
