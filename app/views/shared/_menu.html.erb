@@ -19,7 +19,8 @@
         <% if user_signed_in? %>
           <li class="nav-item active">
             <a class="nav-link"
-               href="<%= generator_passwords_path %>"
+               id="password-generator-link"
+               href=""
                title="<%= t('password_generator') %>"
                data-toggle="modal"
                data-target="#password-generator-modal">

@@ -24,5 +24,9 @@ $(document).ready(function () {
     $('.animated-icon3').toggleClass('open');
     $('.animated-icon4').toggleClass('open');
   });
+
+  $('#password-generator-link').click(function() {
+    $('.navbar-toggler').click();
+  });
 });
 

@@ -14,7 +14,6 @@ Rails.application.routes.draw do
       get '', action: 'unlock', as: 'unlock'
       post 'edit', action: 'edit', as: 'edit'
     end
-    get 'generator', action: 'generator', as: 'generator', on: :collection
     get 'generate', action: 'generate', as: 'generate', on: :collection
   end
 end

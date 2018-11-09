@@ -32,7 +32,7 @@ $(document).ready(function() {
     var symbols = $(this).find('input[name=symbols]').prop('checked');
     var length = $(this).find('input[name=length]').val();
 
-    var url = $(this).data('async-action');
+    var url = $(this).prop('action');
     var data = {
       lower: lower,
       upper: upper,
