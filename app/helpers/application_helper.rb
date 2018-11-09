@@ -22,7 +22,7 @@ module ApplicationHelper
     path = Rails.root.join('public', 'images', 'logos')
     file_path = Rails.root.join(path, "#{domain}.png")
     
-    if !File.exist?(file_path) || File.size(file_path)
+    if !File.exist?(file_path) || File.size(file_path) <= 0
       unless File.exist?(path)
         FileUtils.mkdir_p(path)
       end
