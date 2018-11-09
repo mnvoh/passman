@@ -48,6 +48,30 @@ $(document).ready(function() {
 
     return false;
   });
+
+  $('.password-indicator-enabled').on('keyup change', function() {
+    var indicatorId = $(this).data('indicator');
+    var indicatorMessageId = $(this).data('indicator-message');
+    console.log(indicatorId);
+
+    var testResult = zxcvbn($(this).val());
+    var warning = testResult.feedback.warning;
+    var score = testResult.score;
+    $(indicatorMessageId).html(warning);
+
+    $(indicatorId).find('i').each(function(index) {
+      if (index <= score) {
+        console.log('filed');
+        $(this).removeClass('hollow');
+        $(this).addClass('filled');
+      }
+      else {
+        console.log('hollow');
+        $(this).removeClass('filled');
+        $(this).addClass('hollow');
+      }
+    });
+  });
 });
 
 function filterPasswords(query, type = 'title') {
