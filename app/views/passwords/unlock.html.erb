@@ -9,11 +9,12 @@
         <p id="notice" class="alert alert-success"><%= notice %></p>
       <% end %>
 
-      <h2><%= t('enter_master_password_to_unlock') %></h2>
-
-      <form action="<%= show_password_path(@password) %>" method="post">
+      <form id="unlock-form"
+            action="<%= show_password_path(@password) %>"
+            method="post">
+        <%= image_tag 'passman.svg', class: 'logo' %>
+        <h5 class="text-center"><%= t('enter_master_password_to_unlock') %></h5>
         <div class="form-group">
-          <label for="master_password"><%= t('master_password') %>
           <input type="password"
                  id="master_password"
                  name="master_password"
@@ -26,10 +27,10 @@
                type="hidden"
                value="<%= form_authenticity_token %>">
         <div class="form-group">
-          <button class="btn btn-primary" type="submit">
+          <button class="btn btn-primary form-control mb-3" type="submit">
             <%= t('unlock') %>
           </button>
-          <%= link_to 'Back', passwords_path, class: 'btn btn-warning' %>
+          <%= link_to 'Back', passwords_path, class: 'btn btn-warning form-control' %>
         </div>
       </form>
     </div>
