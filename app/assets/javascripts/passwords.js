@@ -62,6 +62,8 @@ $(document).ready(function() {
       score = testResult.score;
     }
 
+    $(this).data('password-strength', score);
+
     $(indicatorMessageId).html(warning);
     $(indicatorId).find('i').each(function(index) {
       if (index <= score) {
@@ -73,6 +75,49 @@ $(document).ready(function() {
         $(this).addClass('hollow');
       }
     });
+  });
+
+  $('#password-form').submit(function() {
+    var errors = [];
+
+    if ($('#master_password').val().length <= 0) {
+      errors.push("Master passwords can't be empty");
+    }
+
+    if ($('#master_password').data('password-strength') < 2) {
+      errors.push("Master password stregth must be at least 3");
+    }
+
+    if ($('#master_password').val() !== $('#repeat_master_password').val()) {
+      errors.push("Master passwords don't match");
+    }
+
+    if ($('#password_title').val().length < 1) {
+      errors.push("Title can't be empty");
+    }
+
+    if ($('#password_password').val().length < 1) {
+      errors.push("Password can't be empty");
+    }
+
+    if (errors.length <= 0) {
+      return true;
+    }
+
+    errors = errors.map(function(x) { return "<li>" + x + "</li>" }).join("\n");
+
+    console.log($('#password-form-errors').length);
+    if ($('#password-form-errors').length <= 0) {
+      var formErrors = " \
+        <div id='password-form-errors' class='alert alert-danger'>"
+          + errors + "</div>";
+      $(this).prepend(formErrors);
+    }
+    else {
+      $('#password-form-errors').html(errors);
+    }
+
+    return false;
   });
 });
 

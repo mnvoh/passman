@@ -1,4 +1,4 @@
-<%= form_with(model: password, local: true) do |form| %>
+<%= form_with(model: password, local: true, id: 'password-form') do |form| %>
   <% if password.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
       <ul>
