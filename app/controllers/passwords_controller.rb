@@ -92,26 +92,21 @@ class PasswordsController < ApplicationController
       notice: 'Password was successfully destroyed.'
   end
 
-  def generator
-    @length = (params[:length] || 12).to_i
-    @lower = params[:lower] == 'true'
-    @upper = params[:upper] == 'true'
-    @numbers = params[:numbers] == 'true'
-    @symbols = params[:symbols] == 'true'
-
-    unless [@lower, @upper, @numbers, @symbols].any? { |c| c }
-      @lower = @upper = @numbers = @symbols = true
-    end
-
-    @random_string = random(@length, @lower, @upper, @numbers, @symbols)
-  end
-
   def generate
     length = (params[:length] || 12).to_i
     lowercase = params[:lower] == 'true'
     uppercase = params[:upper] == 'true'
     numbers = params[:numbers] == 'true'
     symbols = params[:symbols] == 'true'
+
+    current_user.set_preferences({
+      generator_lower: lowercase,
+      generator_upper: uppercase,
+      generator_numbers: numbers,
+      generator_symbols: symbols,
+      generator_length: length,
+    })
+    current_user.save
 
     unless [lowercase, uppercase, numbers, symbols].any? { |a| a == true }
       render json: { error: 'At least one character set must be selected' },

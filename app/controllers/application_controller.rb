@@ -20,11 +20,11 @@ class ApplicationController < ActionController::Base
     def prepare_generator
       if user_signed_in?
         @generator_available = true
-        @generator_lower = true
-        @generator_upper = true
-        @generator_numbers = true
-        @generator_symbols = true
-        @generator_length = 12
+        @generator_lower = current_user.preferences['generator_lower'] || true
+        @generator_upper = current_user.preferences['generator_upper'] || true
+        @generator_numbers = current_user.preferences['generator_numbers'] || true
+        @generator_symbols = current_user.preferences['generator_symbols'] || true
+        @generator_length = current_user.preferences['generator_length'] || 12
       else
         @generator_available = false
       end
