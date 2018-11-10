@@ -53,11 +53,16 @@ $(document).ready(function() {
     var indicatorId = $(this).data('indicator');
     var indicatorMessageId = $(this).data('indicator-message');
 
-    var testResult = zxcvbn($(this).val());
-    var warning = testResult.feedback.warning;
-    var score = testResult.score;
-    $(indicatorMessageId).html(warning);
+    var score = -1;
+    var warning = '';
 
+    if ($(this).val().length > 0) {
+      var testResult = zxcvbn($(this).val());
+      warning = testResult.feedback.warning;
+      score = testResult.score;
+    }
+
+    $(indicatorMessageId).html(warning);
     $(indicatorId).find('i').each(function(index) {
       if (index <= score) {
         $(this).removeClass('hollow');

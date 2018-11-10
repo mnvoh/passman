@@ -21,7 +21,7 @@
            data-indicator-message="#master-password-indicator-message"/>
     <p class="text-muted">
       <%= t('master_password_desc') %>
-      <%= five_star(0, 'master-password-indicator') %>
+      <%= five_star(-1, 'master-password-indicator') %>
       <span id="master-password-indicator-message" class="text-danger"></span>
     </p>
   </div>
@@ -60,7 +60,7 @@
     %>
     <div>
       <span id="password-message" class="text-danger"></span>
-      <%= five_star(0, 'password-indicator') %>
+      <%= five_star(-1, 'password-indicator') %>
     </div>
   </div>
 
