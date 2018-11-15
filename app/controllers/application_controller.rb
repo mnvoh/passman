@@ -5,13 +5,12 @@ class ApplicationController < ActionController::Base
   private
 
     def verify_login
-      exceptions = [
-        /main#[a-z]+/,
-        /sessions#[a-z]+/,
+      requires_login = [
+        /passwords#[a-z]+/,
       ]
       action = "#{controller_name}##{action_name}"
       
-      unless user_signed_in? || exceptions.any? { |r| r.match? action }
+      if !user_signed_in? && requires_login.any? { |r| r.match? action }
         flash[:alert] = 'You must login before viewing that page!'
         redirect_to new_user_session_path
       end
@@ -19,6 +18,16 @@ class ApplicationController < ActionController::Base
 
     def prepare_generator
       if user_signed_in?
+        if current_user.preferences.nil?
+          current_user.preferences = {
+            'generator_lower': true,
+            'generator_upper': true,
+            'generator_numbers': true,
+            'generator_symbols': true,
+            'generator_length': 12
+          }
+          current_user.save
+        end
         @generator_available = true
         @generator_lower = current_user.preferences['generator_lower'] || true
         @generator_upper = current_user.preferences['generator_upper'] || true
