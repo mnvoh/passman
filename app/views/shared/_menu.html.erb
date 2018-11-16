@@ -39,6 +39,10 @@
               text: 'New Password'
             }
           %>
+          <li class="nav-item active">
+            <%= link_to t('logout'), destroy_user_session_path,
+              class: 'nav-link', method: :delete %>
+          </li>
         <% else %>
           <%=
             render partial: 'shared/menu_entry', locals: {

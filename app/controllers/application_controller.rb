@@ -1,16 +1,10 @@
 class ApplicationController < ActionController::Base
-  before_action :verify_login
   before_action :prepare_generator
 
   private
 
     def verify_login
-      requires_login = [
-        /passwords#[a-z]+/,
-      ]
-      action = "#{controller_name}##{action_name}"
-      
-      if !user_signed_in? && requires_login.any? { |r| r.match? action }
+      unless user_signed_in?
         flash[:alert] = 'You must login before viewing that page!'
         redirect_to new_user_session_path
       end
