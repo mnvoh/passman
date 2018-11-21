@@ -1,0 +1,26 @@
+version: '3'
+services:
+  passman:
+    build: .
+    command: bash passman-entry.sh
+    volumes:
+      - .:/passman
+    ports:
+      - "127.0.0.1:3000:3000"
+    depends_on:
+      - postgres
+      - redis
+    env_file:
+      - .env
+    restart: on-failure
+  postgres:
+    image: postgres:11.1-alpine
+    volumes:
+      - ./db/data:/var/lib/postgresql/data
+      - ./log/postgres:/var/log/postgresql
+    env_file:
+      - .env
+    restart: on-failure
+  redis:
+    image: redis:5.0-alpine
+    restart: on-failure

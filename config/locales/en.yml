@@ -1,4 +1,5 @@
 en:
+  about: "About"
   activerecord:
     errors:
       models:
@@ -7,10 +8,12 @@ en:
             base:
               master_password_weak: "The provided master password is too weak. It must be at least 6 characters long."
               master_password_mismatch: "Master passwords do not match."
+  checkout_source_code: "Checkout Source Code"
   copied: "Copied to Clipboard"
   copy: "Copy to Clipboard"
   created_at: "Created At"
   description: "Description"
+  donate_to_passman: "Donate to PassMan"
   edit: "Edit"
   edit_password: "Edit Password"
   enter_master_password_to_unlock: "Enter Master Password"
@@ -27,9 +30,11 @@ en:
   password_generator: "Password Generator"
   password_strength: "Password Strength"
   password_updated_at: "Last Password Changed At"
+  privacy_policy: "Privacy Policy"
   repeat_master_password: "Repeat Master Password"
   search_by_domain: "Search by Domain"
   search_by_title: "Search by Title"
+  terms_of_service: "Terms of Service"
   title: "Title"
   unlock: "Unlock"
   untitled: "Untitled"
