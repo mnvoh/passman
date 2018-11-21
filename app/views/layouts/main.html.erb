@@ -12,7 +12,8 @@
   </head>
 
   <body class='main <%= 'background_image' if action_name == 'index' %>'>
-    <%= render partial: 'shared/menu' %>
+    <%= render partial: 'shared/header' %>
     <%= yield %>
+    <%= render partial: 'shared/footer' %>
   </body>
 </html>

@@ -1,0 +1,20 @@
+<%=
+  render partial: 'shared/menu_entry', locals: {
+    url: terms_of_service_path,
+    text: t('terms_of_service')
+  }
+%>
+
+<%=
+  render partial: 'shared/menu_entry', locals: {
+    url: privacy_policy_path,
+    text: t('privacy_policy')
+  }
+%>
+
+<%=
+  render partial: 'shared/menu_entry', locals: {
+    url: about_path,
+    text: t('about')
+  }
+%>

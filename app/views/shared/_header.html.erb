@@ -1,0 +1,24 @@
+<header id="main-navigation" class="navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="<%= root_url %>">
+      <%= image_tag 'passman.svg', width: 48, height: 48 %>
+      PassMan
+    </a>
+
+    <button class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#header-navigation"
+            aria-controls="header-navigation"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon1"><span></span><span></span><span></span></div>
+    </button>
+
+    <nav class="collapse navbar-collapse" id="header-navigation">
+      <ul class="navbar-nav mr-auto">
+        <%= render partial: 'shared/main_navigation_items' %>
+        <%= render partial: 'shared/general_navigation_items' %>
+      </ul>
+    </nav>
+  </div>
+</header>

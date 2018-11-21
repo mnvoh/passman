@@ -1,0 +1,47 @@
+<%=
+  render partial: 'shared/menu_entry', locals: {
+    url: root_path,
+    text: 'Home'
+  }
+%>
+<% if user_signed_in? %>
+  <li class="nav-item active">
+    <a class="nav-link"
+       id="password-generator-link"
+       href=""
+       title="<%= t('password_generator') %>"
+       data-toggle="modal"
+       data-target="#password-generator-modal">
+      <%= t('password_generator') %>
+    </a>
+  </li>
+  <%=
+    render partial: 'shared/menu_entry', locals: {
+      url: passwords_path,
+      text: 'Passwords'
+    }
+  %>
+  <%=
+    render partial: 'shared/menu_entry', locals: {
+      url: new_password_path,
+      text: 'New Password'
+    }
+  %>
+  <li class="nav-item active">
+    <%= link_to t('logout'), destroy_user_session_path,
+      class: 'nav-link', method: :delete %>
+  </li>
+<% else %>
+  <%=
+    render partial: 'shared/menu_entry', locals: {
+      url: new_user_session_path,
+      text: 'Login'
+    }
+  %>
+  <%=
+    render partial: 'shared/menu_entry', locals: {
+      url: new_user_registration_path,
+      text: 'Register'
+    }
+  %>
+<% end %>
