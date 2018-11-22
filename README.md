@@ -1,9 +1,5 @@
 # PassMan
-<div style="text-align: center;">
-  <img src="app/assets/images/passman.svg" style="width: 300px; height: auto;" />
-## <img src=" data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAATCAYAAACZZ43PAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4gsWExEOP/s6RQAAAXFJREFUOMtjYAACQcsWEPYE4hdA/AoLfgbE54B4IRAHg/WYtDCgAKDEKiD+TySey4AOgII3STAAhHXQDfhFogGZ6AYgJK1a/wub1ODGpnX/hfUqoxnmP4FrtkMxwKL5v7h23n9xnQKsWEIj5z9r84n/DHMfqcMMqEE2AGQDLs1gA1Qz/zMsfgEy4DLMgDkoBgCdic8AnqTl/xnmPQYZ8AtmwGFkA0SMqnBqFjWr+s+w8BlIMwh/gRnwFmFA639R/VIMjZIqGf+F3HpgNsPwHswYAAagQMCU/7wxC+GYJ2XFf6bJN/8zLHiKrBmEw0GaTdGjkGH5G4hNMIyqCYT/AfFNmO25yAbweU9F9iMufAqIOYEYbEAnsgHcUYv/ARMIsuI/QFwOxLVAXATEhmCbQZqhLliKbABn5kZ029CyHWYmugw3wKzxP2vDcXQDEggZsAGIj4GwkH71fobZD9ENMGMgCWAGmDApmrmhmn5A8VdCWgDfhcIvJ+mDbgAAAABJRU5ErkJggg==" /> [Donate to the Project](https://donorbox.org/passman)
-  </h1>
-</div>
+![PassMan: Free, open source, online password manager](app/assets/images/passman-medium.png)
 
 ## About
 
@@ -11,7 +7,7 @@
 
 I hope that with the help of the online comunity, PassMan would grow to be the best and most secure password manager out there.
 
-[
+![Donate](app/assets/images/paypal.png) [Donate to the Project](https://donorbox.org/passman)
 
 ## Installation
 
