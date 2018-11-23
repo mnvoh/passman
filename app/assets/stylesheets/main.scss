@@ -7,6 +7,10 @@ body.main.background_image {
 }
 
 body.main {
+  header#main-navigation {
+    border-bottom: 0 none;
+  }
+
   div.wrapper {
     width: 100%;
     max-width: 30rem;

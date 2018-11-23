@@ -2,6 +2,7 @@ class PasswordsController < ApplicationController
   include Security
 
   before_action :set_password, only: [:unlock, :show, :edit, :update, :destroy]
+  before_action :verify_login
 
   def index
     @passwords = Password.all

@@ -12,10 +12,11 @@
   </head>
 
   <body class='application'>
-    <%= render partial: 'shared/menu' %>
+    <%= render partial: 'shared/header' %>
     <% if @generator_available %>
       <%= render partial: 'passwords/password_generator_form' %>
     <% end %>
     <%= yield %>
+    <%= render partial: 'shared/footer' %>
   </body>
 </html>

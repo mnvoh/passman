@@ -4,9 +4,11 @@ Rails.application.routes.draw do
     post 'users/sign_up', to: 'devise/registrations#create'
     post 'users/password/new', to: 'devise/passwords#create'
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
   root to: 'main#index'
   get 'terms-of-service', to: 'main#tos'
+  get 'privacy-policy', to: 'main#privacy_policy'
+  get 'about', to: 'main#about'
 
   resources :passwords, except: [:show], constraints: { id: /[0-9]+/ } do
     member do
