@@ -22,6 +22,7 @@
 $primary-color: #007BFF;
 
 html, body {
+  background: #333;
   width: 100%;
   min-height: 100%;
   margin: 0;
@@ -32,12 +33,13 @@ body {
   background: #fff;
   font-family: Roboto, sans-serif;
   font-size: 100%;
-  padding: 7rem 0;
+  padding: 7rem 0 0;
 }
 
 /* =================== Navigation ================= */
-#main-navigation {
+header#main-navigation {
   background: #333;
+  border-bottom: 1px solid #aaa;
   position: fixed;
   top: 0;
   left: 0;
@@ -142,6 +144,33 @@ body.background_image #main-navigation {
 
 td {
   vertical-align: middle;
+}
+
+/* =========================== FOOTER  ====================== */
+
+.footer {
+  background-color: #333;
+  padding: 1rem 0;
+  margin-top: 2rem;
+
+  ul {
+    padding: 0;
+
+    li {
+      list-style: none;
+    }
+
+    a {
+      color: #aaa;
+    }
+    a:hover {
+      color: #fff;
+    }
+  }
+
+  div.about {
+    color: #aaa;
+  }
 }
 
 /* =========================== GENERAL ====================== */

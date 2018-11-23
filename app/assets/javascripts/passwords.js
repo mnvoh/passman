@@ -106,7 +106,6 @@ $(document).ready(function() {
 
     errors = errors.map(function(x) { return "<li>" + x + "</li>" }).join("\n");
 
-    console.log($('#password-form-errors').length);
     if ($('#password-form-errors').length <= 0) {
       var formErrors = " \
         <div id='password-form-errors' class='alert alert-danger'>"
@@ -137,7 +136,6 @@ function filterPasswords(query, type = 'title') {
 
     $('div.password').each(function(index) {
       var content = $(this).find(contentSelector).html().trim(); 
-      console.log(content);
       if(content.toLowerCase().indexOf(query) !== -1) {
         $(this).parent().removeClass('hidden');
       }

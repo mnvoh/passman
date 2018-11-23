@@ -33,3 +33,4 @@
 .env
 session.vim
 public/images
+/db/data

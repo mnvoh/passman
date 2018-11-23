@@ -9,4 +9,10 @@ class MainController < ApplicationController
 
   def tos
   end
+
+  def privacy_policy
+  end
+
+  def about
+  end
 end
