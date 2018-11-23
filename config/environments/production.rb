@@ -69,6 +69,15 @@ Rails.application.configure do
     host: ENV['HOST'],
     port: ENV['PORT'],
   }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :authentication => :plain,
+    :address => ENV['MAILGUN_ADDRESS'],
+    :port => ENV['MAILGUN_PORT'],
+    :domain => ENV['HOST'],
+    :user_name => ENV['MAILGUN_USERNAME'],
+    :password => ENV['MAILGUN_PASSWORD']
+  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
