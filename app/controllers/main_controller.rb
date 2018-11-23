@@ -24,4 +24,10 @@ class MainController < ApplicationController
 
   def about
   end
+
+  def privacy_policy
+  end
+
+  def about
+  end
 end
