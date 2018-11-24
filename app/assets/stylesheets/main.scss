@@ -1,9 +1,21 @@
-// Place all the styles related to the main controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@-webkit-keyframes main-bg-slide {
+  from { background-position: 0 0; }
+  to { background-position: 400px 0; }
+}
 body.main.background_image {
-  background: image-url('background.jpg') no-repeat 50% 50%;
-  background-size: cover;
+  background: image-url('bg.jpg');
+  padding-top: 0;
+  animation: main-bg-slide 16s linear infinite;
+
+  div.wrapper {
+    padding-top: 8rem;
+    min-height: 100vh;
+  }
+
+  header#main-navigation,
+  footer.footer {
+    display: none;
+  }
 }
 
 body.main {
@@ -20,24 +32,18 @@ body.main {
   }
 
   img.main-logo {
-    width: 80%;
+    max-width: 80%;
+    width: 10rem;
     height: auto;
     margin: 0 10%;
   }
 
   h1.title {
-    color: #fff;
     text-align: center;
     font-size: 4rem;
     text-transform: uppercase;
     letter-spacing: 1rem;
     margin-right: -1rem;
-  }
-
-  p.slogan {
-    color: #ddd;
-    text-align: center;
-    font-size: 1.18rem;
   }
 
   div.wrapper .btn {

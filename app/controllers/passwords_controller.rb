@@ -5,13 +5,16 @@ class PasswordsController < ApplicationController
   before_action :verify_login
 
   def index
+    @page_title = I18n.t('passwords')
     @passwords = Password.all
   end
 
   def unlock
+    @page_title = "Unlock #{@password.title}"
   end
 
   def show
+    @page_title = @password.title
     @master_password = params[:master_password]
     @decrypted_data = @password.decrypt_data(@master_password)
     if @decrypted_data.any? { |item| item.nil? }
@@ -22,11 +25,13 @@ class PasswordsController < ApplicationController
 
   # GET /passwords/new
   def new
+    @page_title = I18n.t('new_password')
     @password = Password.new
   end
 
   # POST /passwords/1/edit
   def edit
+    @page_title = "Edit #{@password.title}"
     @master_password = params[:master_password] || session[:master_password]
 
     if @master_password.nil? || @master_password.empty?
@@ -114,7 +119,7 @@ class PasswordsController < ApplicationController
         status: 400 and return
     end
 
-    random_string = random(length, lowercase, uppercase, numbers, symbols) 
+    random_string = random(length, lowercase, uppercase, numbers, symbols)
 
     render json: { random: random_string }
   end

@@ -1,7 +1,14 @@
 <div class="wrapper">
   <%= image_tag 'passman.svg', title: 'PassMan', alt: 'PassMan', class: 'main-logo' %>
   <h1 class="title">PassMan</h1>
-  <p class="slogan">The password manager you need, and afford  🤑</p>  
+  <p class="align-text-center">
+    PassMan is a free and open source online password manager. You can either
+    register now and use it here, or host it yourself and have total control
+    over your data.
+    <a href="https://github.com/mnvoh/passman" title="free, open source, online password manager">
+      Check out the source code.
+    </a>
+  </p>
   <% if user_signed_in? %>
     <%= link_to 'Logout', :destroy_user_session, class: 'btn btn-danger', method: :delete %>
   <% else %>

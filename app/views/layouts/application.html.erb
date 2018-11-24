@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PassMan</title>
+    <%= render partial: 'shared/meta_tags' %>
+
+    <title>PassMan<%= " | #{@page_title}" if @page_title.present? %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
