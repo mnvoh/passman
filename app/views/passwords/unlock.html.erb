@@ -2,18 +2,20 @@
   <div class="row">
     <div class="col">
       <% if alert %>
-        <p id="alert" class="alert alert-danger"><%= alert %></p>
+        <p id="alert" class="alert alert-warning"><%= alert %></p>
       <% end %>
 
       <% if notice %>
-        <p id="notice" class="alert alert-success"><%= notice %></p>
+        <p id="notice" class="alert alert-danger"><%= notice %></p>
       <% end %>
 
       <form id="unlock-form"
             action="<%= show_password_path(@password) %>"
             method="post">
-        <%= image_tag 'passman.svg', class: 'logo' %>
-        <h5 class="text-center"><%= t('enter_master_password_to_unlock') %></h5>
+        <%= image_tag 'passman.svg', class: 'logo my-4' %>
+        <h5 class="text-center mb-4">
+          <%= t('enter_master_password_to_unlock') %>
+        </h5>
         <div class="form-group">
           <input type="password"
                  id="master_password"
