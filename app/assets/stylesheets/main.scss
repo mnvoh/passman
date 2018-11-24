@@ -1,6 +1,6 @@
 @-webkit-keyframes main-bg-slide {
   from { background-position: 0 0; }
-  to { background-position: 400px 0; }
+  to { background-position: 200px 0; }
 }
 body.main.background_image {
   background: image-url('bg.jpg');
@@ -12,7 +12,6 @@ body.main.background_image {
     min-height: 100vh;
   }
 
-  header#main-navigation,
   footer.footer {
     display: none;
   }
@@ -29,29 +28,51 @@ body.main {
     padding: 2rem;
     margin: 0 auto;
     text-align: center;
+
+    img.main-logo {
+      max-width: 80%;
+      width: 10rem;
+      height: auto;
+      margin: 0 10%;
+    }
+
+    h1.title {
+      text-align: center;
+      font-size: 4rem;
+      text-transform: uppercase;
+      letter-spacing: 1rem;
+      margin-right: -1rem;
+    }
+
+    @media all and (max-width: 530px) {
+      h1.title {
+        font-size: 3rem;
+      }
+    }
+    @media all and (max-width: 450px) {
+      h1.title {
+        font-size: 2rem;
+      }
+    }
+
+    .btn {
+      width: 100%;
+      margin: 0.5rem 0;
+      font-size: 2rem;
+    }
+    .btn.btn-danger {
+      width: 24rem;
+    }
+    
+    p {
+      text-align: justify;
+      text-align-last: center;
+    }
   }
 
-  img.main-logo {
-    max-width: 80%;
-    width: 10rem;
-    height: auto;
-    margin: 0 10%;
-  }
+  
 
-  h1.title {
-    text-align: center;
-    font-size: 4rem;
-    text-transform: uppercase;
-    letter-spacing: 1rem;
-    margin-right: -1rem;
-  }
+  
 
-  div.wrapper .btn {
-    width: 100%;
-    margin: 0.5rem 0;
-    font-size: 2rem;
-  }
-  div.wrapper .btn.btn-danger {
-    width: 24rem;
-  }
+  
 }
