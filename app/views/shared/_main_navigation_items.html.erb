@@ -1,7 +1,8 @@
 <%=
   render partial: 'shared/menu_entry', locals: {
     url: root_path,
-    text: 'Home'
+    text: 'Home',
+    icon: icon('fas', 'home')
   }
 %>
 <% if user_signed_in? %>
@@ -12,36 +13,41 @@
        title="<%= t('password_generator') %>"
        data-toggle="modal"
        data-target="#password-generator-modal">
+      <%= icon('fas', 'cogs') %>
       <%= t('password_generator') %>
     </a>
   </li>
   <%=
     render partial: 'shared/menu_entry', locals: {
       url: passwords_path,
-      text: 'Passwords'
+      text: 'Passwords',
+      icon: icon('fas', 'key')
     }
   %>
   <%=
     render partial: 'shared/menu_entry', locals: {
       url: new_password_path,
-      text: 'New Password'
+      text: 'New Password',
+      icon: icon('fas', 'plus')
     }
   %>
   <li class="nav-item active">
-    <%= link_to t('logout'), destroy_user_session_path,
-      class: 'nav-link', method: :delete %>
+    <%= link_to icon('fas', 'sign-out-alt').html_safe + t('logout'),
+      destroy_user_session_path, class: 'nav-link', method: :delete %>
   </li>
 <% else %>
   <%=
     render partial: 'shared/menu_entry', locals: {
       url: new_user_session_path,
-      text: 'Login'
+      text: 'Login',
+      icon: icon('fas', 'sign-in-alt')
     }
   %>
   <%=
     render partial: 'shared/menu_entry', locals: {
       url: new_user_registration_path,
-      text: 'Register'
+      text: 'Register',
+      icon: icon('fas', 'user-plus')
     }
   %>
 <% end %>
