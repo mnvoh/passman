@@ -1,20 +1,23 @@
 <%=
   render partial: 'shared/menu_entry', locals: {
     url: terms_of_service_path,
-    text: t('terms_of_service')
+    text: t('terms_of_service'),
+    icon: icon('fas', 'balance-scale')
   }
 %>
 
 <%=
   render partial: 'shared/menu_entry', locals: {
     url: privacy_policy_path,
-    text: t('privacy_policy')
+    text: t('privacy_policy'),
+    icon: icon('fas', 'user-secret')
   }
 %>
 
 <%=
   render partial: 'shared/menu_entry', locals: {
     url: about_path,
-    text: t('about')
+    text: t('about'),
+    icon: icon('fas', 'question')
   }
 %>
