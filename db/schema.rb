@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2018_11_30_134349) do
     t.string "title"
     t.string "iv"
     t.string "salt"
-    t.integer "password_strength"
+    t.text "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

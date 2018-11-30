@@ -142,7 +142,6 @@ class PasswordsController < ApplicationController
     def master_password_error
       master = params[:master_password]
       repeat = params[:repeat_master_password]
-      puts "--- #{master} --- #{repeat} ---"
 
       if master.length < 6
         :weak

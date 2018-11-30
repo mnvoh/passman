@@ -1,9 +1,6 @@
-require 'openssl'
-require 'base64'
-require 'zxcvbn'
-
 class Password < ApplicationRecord
   include Security
+  include Encryptable
 
   before_save do |password|
     unless /^#{ENCRYPTED_DATA_HEADER}/.match?(password.password)
@@ -12,15 +9,6 @@ class Password < ApplicationRecord
     end
     password = '' if password.nil?
     description = '' if description.nil?
-  end
-
-  after_initialize do |user|
-    if user.salt.nil? || user.iv.nil?
-      user.salt = Base64.encode64(OpenSSL::Random.random_bytes(KEY_LENGTH / 8))
-      user.salt = user.salt.strip
-      user.iv = Base64.encode64(OpenSSL::Random.random_bytes(16))
-      user.iv = user.iv.strip
-    end
   end
 
   def domain
@@ -49,8 +37,8 @@ class Password < ApplicationRecord
     decrypted_pass = decrypt(password, master_password, salt, iv)
     decrypted_desc = decrypt(description, master_password, salt, iv)
 
-    decrypted_pass = '' if self.password.nil? || self.password.empty?
-    decrypted_desc = '' if self.description.nil? || self.description.empty?
+    decrypted_pass = '' unless self.password.present?
+    decrypted_desc = '' unless self.description.present?
 
     [decrypted_pass, decrypted_desc]
   end

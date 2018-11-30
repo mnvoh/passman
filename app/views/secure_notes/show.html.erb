@@ -6,18 +6,8 @@
 </p>
 
 <p>
-  <strong>Iv:</strong>
-  <%= @secure_note.iv %>
-</p>
-
-<p>
-  <strong>Salt:</strong>
-  <%= @secure_note.salt %>
-</p>
-
-<p>
-  <strong>Password strength:</strong>
-  <%= @secure_note.password_strength %>
+  <strong>Note:</strong>
+  <%= @secure_note.note %>
 </p>
 
 <%= link_to 'Edit', edit_secure_note_path(@secure_note) %> |

@@ -4,7 +4,7 @@ class CreateSecureNotes < ActiveRecord::Migration[5.2]
       t.string :title
       t.string :iv
       t.string :salt
-      t.integer :password_strength
+      t.text :note
 
       t.timestamps
     end

@@ -1,8 +1,6 @@
 <%= form_with(model: secure_note, local: true) do |form| %>
   <% if secure_note.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(secure_note.errors.count, "error") %> prohibited this secure_note from being saved:</h2>
-
+    <div id="error_explanation" class="alert alert-danger">
       <ul>
       <% secure_note.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -11,27 +9,49 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
+    <label for="master_password"><%= t('master_password') %></label>
+    <input type="password"
+           id="master_password"
+           name="master_password"
+           placeholder="<%= t('master_password') %>"
+           autofocus="autofocus"
+           class="form-control password-indicator-enabled"
+           data-indicator="#master-password-indicator"
+           data-indicator-message="#master-password-indicator-message"/>
+    <p class="text-muted">
+      <%= t('master_password_desc') %>
+      <%= five_star(-1, 'master-password-indicator') %>
+      <span id="master-password-indicator-message" class="text-danger"></span>
+    </p>
+  </div>
+  <div class="form-group">
+    <label for="master_password"><%= t('repeat_master_password') %></label>
+    <input type="password"
+           id="repeat_master_password"
+           name="repeat_master_password"
+           placeholder="<%= t('repeat_master_password') %>"
+           class="form-control" />
+  </div>
+
+  <div class="form-group">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%=
+      form.text_field :title, placeholder: t('title'), class: 'form-control'
+    %>
   </div>
 
-  <div class="field">
-    <%= form.label :iv %>
-    <%= form.text_field :iv %>
-  </div>
-
-  <div class="field">
-    <%= form.label :salt %>
-    <%= form.text_field :salt %>
-  </div>
-
-  <div class="field">
-    <%= form.label :password_strength %>
-    <%= form.number_field :password_strength %>
+  <div class="form-group">
+    <%= form.label :note%>
+    <%=
+      form.text_area :note, class: 'form-control', rows: 10
+    %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn btn-primary' %>
+    <%=
+      link_to 'Back', secure_notes_path, class: 'btn btn-warning float-right'
+    %>
   </div>
 <% end %>

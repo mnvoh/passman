@@ -2,18 +2,17 @@ class SecureNotesController < ApplicationController
   before_action :set_secure_note, only: [:show, :edit, :update, :destroy]
 
   # GET /secure_notes
-  # GET /secure_notes.json
   def index
     @secure_notes = SecureNote.all
   end
 
   # GET /secure_notes/1
-  # GET /secure_notes/1.json
   def show
   end
 
   # GET /secure_notes/new
   def new
+    @page_title = I18n.t('new_secure_note')
     @secure_note = SecureNote.new
   end
 
@@ -22,23 +21,26 @@ class SecureNotesController < ApplicationController
   end
 
   # POST /secure_notes
-  # POST /secure_notes.json
   def create
     @secure_note = SecureNote.new(secure_note_params)
 
-    respond_to do |format|
+    if master_password_error == :weak
+      @secure_note.errors.add(:base, :master_password_weak)
+      render :new
+    elsif master_password_error == :mismatch
+      @secure_note.errors.add(:base, :master_password_mismatch)
+      render :new
+    else
+      @secure_note.encrypt_note(params[:master_password])
       if @secure_note.save
-        format.html { redirect_to @secure_note, notice: 'Secure note was successfully created.' }
-        format.json { render :show, status: :created, location: @secure_note }
+        redirect_to @secure_note, notice: 'Secure note was successfully created.'
       else
-        format.html { render :new }
-        format.json { render json: @secure_note.errors, status: :unprocessable_entity }
+        render :new
       end
     end
   end
 
   # PATCH/PUT /secure_notes/1
-  # PATCH/PUT /secure_notes/1.json
   def update
     respond_to do |format|
       if @secure_note.update(secure_note_params)
@@ -52,7 +54,6 @@ class SecureNotesController < ApplicationController
   end
 
   # DELETE /secure_notes/1
-  # DELETE /secure_notes/1.json
   def destroy
     @secure_note.destroy
     respond_to do |format|
@@ -62,13 +63,24 @@ class SecureNotesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_secure_note
       @secure_note = SecureNote.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def secure_note_params
-      params.require(:secure_note).permit(:title, :iv, :salt, :password_strength)
+      params.require(:secure_note).permit(:title, :note)
+    end
+
+    def master_password_error
+      master = params[:master_password]
+      repeat = params[:repeat_master_password]
+
+      if master.length < 6
+        :weak
+      elsif master != repeat
+        :mismatch
+      else
+        :ok
+      end
     end
 end
