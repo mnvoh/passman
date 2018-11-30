@@ -1,0 +1,37 @@
+<%= form_with(model: secure_note, local: true) do |form| %>
+  <% if secure_note.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(secure_note.errors.count, "error") %> prohibited this secure_note from being saved:</h2>
+
+      <ul>
+      <% secure_note.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :iv %>
+    <%= form.text_field :iv %>
+  </div>
+
+  <div class="field">
+    <%= form.label :salt %>
+    <%= form.text_field :salt %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password_strength %>
+    <%= form.number_field :password_strength %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :secure_notes
   devise_for :users
   devise_scope :user do
     post 'users/sign_up', to: 'devise/registrations#create'

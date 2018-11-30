@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @secure_note.title %>
+</p>
+
+<p>
+  <strong>Iv:</strong>
+  <%= @secure_note.iv %>
+</p>
+
+<p>
+  <strong>Salt:</strong>
+  <%= @secure_note.salt %>
+</p>
+
+<p>
+  <strong>Password strength:</strong>
+  <%= @secure_note.password_strength %>
+</p>
+
+<%= link_to 'Edit', edit_secure_note_path(@secure_note) %> |
+<%= link_to 'Back', secure_notes_path %>

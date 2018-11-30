@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Secure Notes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Iv</th>
+      <th>Salt</th>
+      <th>Password strength</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @secure_notes.each do |secure_note| %>
+      <tr>
+        <td><%= secure_note.title %></td>
+        <td><%= secure_note.iv %></td>
+        <td><%= secure_note.salt %></td>
+        <td><%= secure_note.password_strength %></td>
+        <td><%= link_to 'Show', secure_note %></td>
+        <td><%= link_to 'Edit', edit_secure_note_path(secure_note) %></td>
+        <td><%= link_to 'Destroy', secure_note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Secure Note', new_secure_note_path %>
