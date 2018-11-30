@@ -3,14 +3,6 @@
     <div class="col">
       <div class="row">
         <div class="col">
-          <% if alert %>
-            <p id="alert" class="alert alert-danger"><%= alert %></p>
-          <% end %>
-
-          <% if notice %>
-            <p id="notice" class="alert alert-success"><%= notice %></p>
-          <% end %>
-
           <h1>
             <%= t('passwords') %>
             <%= link_to icon('fas', 'plus-circle'), new_password_path %>

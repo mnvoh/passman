@@ -18,6 +18,7 @@
     <% if @generator_available %>
       <%= render partial: 'passwords/password_generator_form' %>
     <% end %>
+    <%= render partial: 'shared/messages' %>
     <%= yield %>
     <%= render partial: 'shared/footer' %>
   </body>
