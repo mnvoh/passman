@@ -18,4 +18,10 @@ class MainController < ApplicationController
   def about
     @page_title = I18n.t('about')
   end
+
+  def privacy_policy
+  end
+
+  def about
+  end
 end

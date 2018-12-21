@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col">
       <form id="unlock-form"
-            action="<%= show_password_path(@password) %>"
+            action="<%= show_secure_note_path(@secure_note) %>"
             method="post">
         <%= image_tag 'passman.svg', class: 'logo my-4' %>
         <h5 class="text-center mb-4">
@@ -24,7 +24,7 @@
           <button class="btn btn-primary form-control mb-3" type="submit">
             <%= t('unlock') %>
           </button>
-          <%= link_to 'Back', passwords_path, class: 'btn btn-warning form-control' %>
+          <%= link_to 'Back', secure_notes_path, class: 'btn btn-warning form-control' %>
         </div>
       </form>
     </div>
