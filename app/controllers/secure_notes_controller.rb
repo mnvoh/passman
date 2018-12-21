@@ -1,5 +1,6 @@
 class SecureNotesController < ApplicationController
   before_action :set_secure_note, only: [:unlock, :show, :edit, :update, :destroy]
+  before_action :verify_login
 
   # GET /secure_notes
   def index
