@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on('ready turbolinks:load', function() {
   $('#passwords-title-filter').keyup(function() {
     var query = $(this).val().toLowerCase(); 
     filterPasswords(query, 'title');
