@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :secure_notes
   devise_for :users
   devise_scope :user do
     post 'users/sign_up', to: 'devise/registrations#create'
@@ -18,5 +17,13 @@ Rails.application.routes.draw do
       post 'edit', action: 'edit', as: 'edit'
     end
     get 'generate', action: 'generate', as: 'generate', on: :collection
+  end
+
+  resources :secure_notes, except: [:show], constraints: { id: /[0-9]+/ } do
+    member do
+      post '', action: 'show', as: 'show'
+      get '', action: 'unlock', as: 'unlock'
+      post 'edit', action: 'edit', as: 'edit'
+    end
   end
 end

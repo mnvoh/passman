@@ -3,7 +3,9 @@
     <div class="col">
       <h1><%= @secure_note.title %></h1>
 
-      <%= simple_format(@secure_note.note) %>
+      <div class="secure-note">
+        <%= simple_format(@decrypted_note) %>
+      </div>
 
       <%= link_to 'Edit', edit_secure_note_path(@secure_note), class: 'btn btn-success' %>
       <%= link_to 'Delete', @secure_note, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>

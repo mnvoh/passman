@@ -1,13 +1,24 @@
 class SecureNotesController < ApplicationController
-  before_action :set_secure_note, only: [:show, :edit, :update, :destroy]
+  before_action :set_secure_note, only: [:unlock, :show, :edit, :update, :destroy]
 
   # GET /secure_notes
   def index
     @secure_notes = SecureNote.all
   end
 
+  def unlock
+    @page_title = "Unlock #{@secure_note.title}"
+  end
+
   # GET /secure_notes/1
   def show
+    @page_title = @secure_note.title
+    @master_password = params[:master_password]
+    @decrypted_note = @secure_note.decrypt_note(@master_password)
+    if @decrypted_note.empty?
+      flash[:notice] = I18n.t('invalid_master_password')
+      redirect_to unlock_secure_note_path(@secure_note)
+    end
   end
 
   # GET /secure_notes/new

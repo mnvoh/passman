@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <form id="unlock-form"
+            action="<%= show_secure_note_path(@secure_note) %>"
+            method="post">
+        <%= image_tag 'passman.svg', class: 'logo my-4' %>
+        <h5 class="text-center mb-4">
+          <%= t('enter_master_password_to_unlock') %>
+        </h5>
+        <div class="form-group">
+          <input type="password"
+                 id="master_password"
+                 name="master_password"
+                 class="form-control"
+                 autofocus="autofocus"
+                 placeholder="<%= t('master_password') %>" />
+        </div>
+        <input name="utf8" type="hidden" value="✓">
+        <input name="authenticity_token"
+               type="hidden"
+               value="<%= form_authenticity_token %>">
+        <div class="form-group">
+          <button class="btn btn-primary form-control mb-3" type="submit">
+            <%= t('unlock') %>
+          </button>
+          <%= link_to 'Back', secure_notes_path, class: 'btn btn-warning form-control' %>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

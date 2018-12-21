@@ -14,7 +14,7 @@
           <% @secure_notes.each do |secure_note| %>
             <tr>
               <td>
-                <%= link_to secure_note.title, secure_note_path(secure_note) %>
+                <%= link_to secure_note.title, unlock_secure_note_path(secure_note) %>
               </td>
             </tr>
           <% end %>
