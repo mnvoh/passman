@@ -118,6 +118,7 @@ Also you could always [donate to the Project](https://donorbox.org/passman) so t
 
 ## Roadmap
 
-- [ ] Secure Notes
+- [x] Secure Notes
+- [ ] Add markdown support to secure notes
 - [ ] Import/Export
 - [ ] API for future mobile apps

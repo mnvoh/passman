@@ -4,6 +4,7 @@
 @import 'main';
 @import 'devise';
 @import 'passwords';
+@import 'secure_notes';
 
 $primary-color: #007BFF;
 
@@ -32,6 +33,9 @@ header#main-navigation {
   width: 100vw;
   z-index: 999;
 
+  button.navbar-toggler {
+    padding: 0;
+  }
   button.navbar-toggler {
     padding: 0;
   }

@@ -27,6 +27,7 @@ en:
   master_password_mismatch: "Master passwords do not match."
   master_password_weak: "The provided master password is too weak. It must be at least 6 characters long."
   new_password: "New Password"
+  new_secure_note: "New Secure Note"
   password: "Password"
   passwords: "Passwords"
   password_generator: "Password Generator"

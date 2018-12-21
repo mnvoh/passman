@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).on('ready turbolinks:load', function () {
   $('.navbar-toggler').on('click', function () {
     $('.animated-icon1').toggleClass('open');
     $('.animated-icon3').toggleClass('open');

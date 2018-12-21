@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>
+        Secure Notes
+
+        <%= link_to icon('fas', 'plus-circle'), new_secure_note_path %>
+      </h1>
+
+      <br />
+
+      <table class="table table-striped">
+        <tbody>
+          <% @secure_notes.each do |secure_note| %>
+            <tr>
+              <td>
+                <%= link_to secure_note.title, unlock_secure_note_path(secure_note) %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

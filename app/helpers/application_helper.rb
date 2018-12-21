@@ -28,11 +28,18 @@ module ApplicationHelper
       end
 
       open(file_path, 'wb') do |file|
-        file << open("https://logo.clearbit.com/#{domain}").read
+        begin
+          file << open("https://logo.clearbit.com/#{domain}").read
+        rescue
+        end
       end
     end
 
-    "/images/logos/#{domain}.png"
+    if File.exist?(file_path) && File.size(file_path) > 0
+      "/images/logos/#{domain}.png"
+    else
+      image_path('passman-small.png')
+    end
   end
 
   def five_star(value, id = nil)
