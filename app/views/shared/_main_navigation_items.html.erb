@@ -31,6 +31,13 @@
       icon: icon('fas', 'plus')
     }
   %>
+  <%=
+    render partial: 'shared/menu_entry', locals: {
+      url: secure_notes_path,
+      text: 'Secure Notes',
+      icon: icon('fas', 'sticky-note')
+    }
+  %>
   <li class="nav-item active">
     <%= link_to icon('fas', 'sign-out-alt').html_safe + t('logout'),
       destroy_user_session_path, class: 'nav-link', method: :delete %>
