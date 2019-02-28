@@ -1,8 +1,6 @@
 $(document).on('ready turbolinks:load', function () {
   $('.navbar-toggler').on('click', function () {
     $('.animated-icon1').toggleClass('open');
-    $('.animated-icon3').toggleClass('open');
-    $('.animated-icon4').toggleClass('open');
     toggleNav();
   });
 
@@ -11,9 +9,14 @@ $(document).on('ready turbolinks:load', function () {
   });
 });
 
+var lastToggledAt = 0;
 function toggleNav() {
+  if ((new Date()).getTime() - lastToggledAt < 100) {
+    return;
+  }
   var isOpen = $('#header-navigation').css('display') != 'none';  
   isOpen ? hideNav() : showNav();
+  lastToggledAt = (new Date()).getTime();
 }
 
 function showNav() {
