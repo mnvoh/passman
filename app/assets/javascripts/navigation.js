@@ -1,19 +1,30 @@
 $(document).on('ready turbolinks:load', function () {
   $('.navbar-toggler').on('click', function () {
     $('.animated-icon1').toggleClass('open');
-    $('.animated-icon3').toggleClass('open');
-    $('.animated-icon4').toggleClass('open');
     toggleNav();
   });
 
   $('#password-generator-link').click(function() {
     $('.navbar-toggler').click();
   });
+
+  $('#social-share').jsSocials({
+    shares: ["email", "twitter", "facebook", "linkedin", "pinterest", "stumbleupon", "whatsapp", "telegram"],
+    showLabel: false,
+    showCount: false,
+    text: "Free, #open_source, online #password_manager that you can #self_host.",
+    url: "https://passman.xyz",
+  })
 });
 
+var lastToggledAt = 0;
 function toggleNav() {
+  if ((new Date()).getTime() - lastToggledAt < 100) {
+    return;
+  }
   var isOpen = $('#header-navigation').css('display') != 'none';  
   isOpen ? hideNav() : showNav();
+  lastToggledAt = (new Date()).getTime();
 }
 
 function showNav() {
