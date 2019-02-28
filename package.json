@@ -2,6 +2,7 @@
   "name": "PassMan",
   "private": true,
   "dependencies": {
+    "jssocials": "^1.5.0",
     "zxcvbn": "4.4.2"
   }
 }

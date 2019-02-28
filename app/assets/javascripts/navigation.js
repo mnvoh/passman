@@ -7,6 +7,14 @@ $(document).on('ready turbolinks:load', function () {
   $('#password-generator-link').click(function() {
     $('.navbar-toggler').click();
   });
+
+  $('#social-share').jsSocials({
+    shares: ["email", "twitter", "facebook", "linkedin", "pinterest", "stumbleupon", "whatsapp", "telegram"],
+    showLabel: false,
+    showCount: false,
+    text: "Free, #open_source, online #password_manager that you can #self_host.",
+    url: "https://passman.xyz",
+  })
 });
 
 var lastToggledAt = 0;

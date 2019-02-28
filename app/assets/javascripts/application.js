@@ -5,4 +5,5 @@
 //= require popper
 //= require bootstrap
 //= require zxcvbn/dist/zxcvbn
+//= require jssocials/dist/jssocials
 //= require_tree .
