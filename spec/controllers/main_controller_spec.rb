@@ -14,4 +14,25 @@ RSpec.describe MainController, type: :controller do
       expect(response.status).to eq(302)
     end
   end
+
+  context '#about' do
+    it 'should return 200' do
+      get :about
+      expect(response.status).to eq(200)
+    end
+  end
+
+  context '#tos' do
+    it 'should return 200' do
+      get :tos
+      expect(response.status).to eq(200)
+    end
+  end
+
+  context '#privacy_policy' do
+    it 'should return 200' do
+      get :privacy_policy
+      expect(response.status).to eq(200)
+    end
+  end
 end
