@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe MainController, type: :controller do
-  context '#index' do
+  describe 'GET #index' do
     it 'should show the home page for guests' do
       get :index 
       expect(response.status).to eq(200)
@@ -15,21 +15,21 @@ RSpec.describe MainController, type: :controller do
     end
   end
 
-  context '#about' do
+  describe 'GET #about' do
     it 'should return 200' do
       get :about
       expect(response.status).to eq(200)
     end
   end
 
-  context '#tos' do
+  describe 'GET #tos' do
     it 'should return 200' do
       get :tos
       expect(response.status).to eq(200)
     end
   end
 
-  context '#privacy_policy' do
+  describe 'GET #privacy_policy' do
     it 'should return 200' do
       get :privacy_policy
       expect(response.status).to eq(200)
