@@ -1,6 +1,7 @@
 class BaseDeviseController < ApplicationController
   layout 'devise'
   before_action :set_page_title
+  skip_before_action :verify_authenticity_token
 
 private
 

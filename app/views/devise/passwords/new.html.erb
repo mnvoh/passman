@@ -5,7 +5,7 @@
   </div>
 
   <div class='content'>
-    <%= form_for(resource, as: resource_name, url: users_password_new_url,
+    <%= form_for(resource, as: resource_name, url: users_password_new_path,
                  html: { method: :post }) do |f| %>
       <%= devise_error_messages! %>
 
