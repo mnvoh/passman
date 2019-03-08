@@ -31,7 +31,7 @@ cp .env.sample .env
 ##### 3-1. Generate a secret key and replace it in your `.env` file
 
 ```bash
-head -n1000 | sha512sum
+head -n1000 /dev/urandom | sha512sum
 ```
 
 ##### 4. Start the containers for the first time and make sure that everything works
@@ -42,42 +42,7 @@ docker-compose up
 This also builds the containers, so watch out for errors in case any occurs.
 
 
-##### 4. (for distributions using systemd) Create a systemd unit with this content:
-
-```
-[Unit]
-Description=PassMan Compose Service
-Requires=docker.service
-After=docker.service
-
-[Service]
-Restart=always
-WorkingDirectory=/home/[your-user-name]/passman
-# Remove old containers, images and volumes
-ExecStartPre=/usr/bin/docker-compose down -v
-ExecStartPre=/usr/bin/docker-compose rm -fv
-ExecStartPre=-/bin/bash -c 'docker volume ls -qf "name=%i_" | xargs docker volume rm'
-ExecStartPre=-/bin/bash -c 'docker network ls -qf "name=%i_" | xargs docker network rm'
-ExecStartPre=-/bin/bash -c 'docker ps -aqf "name=%i_*" | xargs docker rm'
-
-# Compose up
-ExecStart=/usr/bin/docker-compose up
-
-# Compose down, remove containers and volumes
-ExecStop=/usr/bin/docker-compose down -v
-
-[Install]
-WantedBy=multi-user.target
-```
-
-Then enable the service and start it:
-
-```bash
-sudo systemctl enable passman
-sudo systemctl start passman
-```
-
-##### 5. Create a reverse proxy that points to localhost:3000. For example in Nginx:
+##### 4. Create a reverse proxy that points to localhost:3000. For example in Nginx:
 
 ```
 upstream passman_web {
@@ -104,7 +69,7 @@ server {
 
 Restart nginx and you should be able to visit the website using your domain.
 
-#### 6. ⚠️ SETUP SSL
+#### 5. ⚠️ SETUP SSL
 
 At this point without ssl, you have literally no security whatsoever. All your passwords could be easily compromised. So setup an ssl certificate and enable https on your website. The easiest way would be [Let's Encrypt](https://letsencrypt.org/).
 
