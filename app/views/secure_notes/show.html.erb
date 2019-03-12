@@ -7,7 +7,19 @@
         <%= simple_format(@decrypted_note) %>
       </div>
 
-      <%= link_to 'Edit', edit_secure_note_path(@secure_note), class: 'btn btn-success' %>
+      <form action="<%= edit_secure_note_path(@secure_note) %>"
+            method="post"
+            class="d-inline">
+        <input name="authenticity_token"
+               type="hidden"
+               value="<%= form_authenticity_token %>">
+        <input type="hidden"
+               name="master_password"
+               value="<%= @master_password %>" />
+        <input type="submit"
+               class="btn btn-success"
+               value="<%= t('edit') %>" />
+      </form>
       <%= link_to 'Delete', @secure_note, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
       <%= link_to 'Back', secure_notes_path, class: 'btn btn-warning' %>
     </div>

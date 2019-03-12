@@ -6,7 +6,7 @@ class PasswordsController < ApplicationController
 
   def index
     @page_title = I18n.t('passwords')
-    @passwords = Password.all
+    @passwords = @current_user.passwords
   end
 
   def unlock
@@ -18,7 +18,7 @@ class PasswordsController < ApplicationController
     @master_password = params[:master_password]
     @decrypted_data = @password.decrypt_data(@master_password)
     if @decrypted_data.any? { |item| item.nil? }
-      flash[:notice] = I18n.t('invalid_master_password')
+      flash[:alert] = I18n.t('invalid_master_password')
       redirect_to unlock_password_path(@password)
     end
   end
