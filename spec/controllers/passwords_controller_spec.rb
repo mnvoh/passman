@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe PasswordsController, type: :controller do
 
-  let(:passwords) do
-    passwords = create_list(:password, 10)
-    passwords.first.user.confirm
-    passwords
+  let(:password) do
+    password = create(:password)
+    password.user.confirm
+    password
   end
 
   let(:valid_attributes) { {
@@ -21,7 +21,7 @@ RSpec.describe PasswordsController, type: :controller do
 
   before(:each) do
     @request.env['devise.mapping'] = Devise.mappings[:user]
-    user = passwords.first.user
+    user = password.user
     sign_in(user)
   end
 
@@ -34,14 +34,14 @@ RSpec.describe PasswordsController, type: :controller do
 
   describe "GET #unlock" do
     it "returns a success response" do
-      get :unlock, params: {id: passwords.first.id}
+      get :unlock, params: {id: password.id}
       expect(response).to be_successful
     end
   end
 
   describe "POST #show" do
     it "returns a success response" do
-      post :show, params: {id: passwords.first.id, master_password: TEST_PASSWORD}
+      post :show, params: {id: password.id, master_password: TEST_PASSWORD}
       expect(response).to be_successful
     end
   end
@@ -55,7 +55,7 @@ RSpec.describe PasswordsController, type: :controller do
 
   describe "POST #edit" do
     it "returns a success response" do
-      post :edit, params: {id: passwords.first.id, master_password: TEST_PASSWORD}
+      post :edit, params: {id: password.id, master_password: TEST_PASSWORD}
       expect(response).to be_successful
     end
   end
@@ -63,13 +63,12 @@ RSpec.describe PasswordsController, type: :controller do
   describe "POST #create" do
     it "creates a new Password" do
       post :create, params: valid_attributes
-      expect(response).to be_successful
+      expect(response).to redirect_to(Password.last)
     end
   end
 
   describe "PUT #update" do
     it "updates the requested password" do
-      password = passwords.first
       new_attributes = valid_attributes
       new_attributes[:password][:title] = 'new_title'
       new_attributes[:id] = password.id
@@ -81,7 +80,6 @@ RSpec.describe PasswordsController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys the requested password" do
-      password = passwords.first
       expect {
         delete :destroy, params: {id: password.to_param}
       }.to change(Password, :count).by(-1)
