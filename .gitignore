@@ -34,3 +34,4 @@
 session.vim
 public/images
 /postgres-data
+/coverage

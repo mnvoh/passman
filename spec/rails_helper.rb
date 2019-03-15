@@ -8,6 +8,8 @@ require 'rspec/rails'
 require 'capybara/rails'
 require 'factory_bot'
 require 'pp'
+require 'simplecov'
+SimpleCov.start
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
