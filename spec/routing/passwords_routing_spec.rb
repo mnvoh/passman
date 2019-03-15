@@ -19,9 +19,8 @@ RSpec.describe PasswordsController, type: :routing do
     end
 
     it "routes to #edit" do
-      expect(:get => "/passwords/1/edit").to route_to("passwords#edit", :id => "1")
+      expect(:post => "/passwords/1/edit").to route_to("passwords#edit", :id => "1")
     end
-
 
     it "routes to #create" do
       expect(:post => "/passwords").to route_to("passwords#create")
