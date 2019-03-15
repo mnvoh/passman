@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "passwords/new", type: :view do
   before(:each) do
-    assign(:password, Password.new())
+    @password = assign(:password, build(:password))
+    @password.user.confirm
+    sign_in(@password.user)
   end
 
   it "renders new password form" do
