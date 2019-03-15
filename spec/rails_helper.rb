@@ -7,6 +7,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require 'capybara/rails'
 require 'factory_bot'
+require 'pp'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 

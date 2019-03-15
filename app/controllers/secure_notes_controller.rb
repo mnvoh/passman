@@ -36,9 +36,6 @@ class SecureNotesController < ApplicationController
   def edit
     @page_title = "Edit #{@secure_note.title}"
     @master_password = params[:master_password] || session[:master_password]
-    puts "=" * 100
-    puts @master_password
-    puts "=" * 100
 
     if @master_password.nil? || @master_password.empty?
       redirect_to unlock_secure_note_path(@secure_note)
