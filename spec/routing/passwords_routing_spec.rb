@@ -10,8 +10,12 @@ RSpec.describe PasswordsController, type: :routing do
       expect(:get => "/passwords/new").to route_to("passwords#new")
     end
 
+    it "routes to #unlock" do
+      expect(:get => "/passwords/1").to route_to("passwords#unlock", :id => "1")
+    end
+
     it "routes to #show" do
-      expect(:get => "/passwords/1").to route_to("passwords#show", :id => "1")
+      expect(:post => "/passwords/1").to route_to("passwords#show", :id => "1")
     end
 
     it "routes to #edit" do
