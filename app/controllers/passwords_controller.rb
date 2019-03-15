@@ -47,6 +47,7 @@ class PasswordsController < ApplicationController
   # POST /passwords.json
   def create
     @password = Password.new(password_params)
+    @password.user = @current_user
 
     if master_password_error == :weak
       @password.errors.add(:base, :master_password_weak)
