@@ -10,14 +10,17 @@ RSpec.describe SecureNotesController, type: :routing do
       expect(:get => "/secure_notes/new").to route_to("secure_notes#new")
     end
 
+    it "routes to #unlock" do
+      expect(:get => "/secure_notes/1").to route_to("secure_notes#unlock", :id => "1")
+    end
+
     it "routes to #show" do
-      expect(:get => "/secure_notes/1").to route_to("secure_notes#show", :id => "1")
+      expect(:post => "/secure_notes/1").to route_to("secure_notes#show", :id => "1")
     end
 
     it "routes to #edit" do
-      expect(:get => "/secure_notes/1/edit").to route_to("secure_notes#edit", :id => "1")
+      expect(:post => "/secure_notes/1/edit").to route_to("secure_notes#edit", :id => "1")
     end
-
 
     it "routes to #create" do
       expect(:post => "/secure_notes").to route_to("secure_notes#create")

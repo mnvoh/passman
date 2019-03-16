@@ -1,6 +1,7 @@
 class SecureNote < ApplicationRecord
   include Security
   include Encryptable
+  belongs_to :user
 
   before_save do |secure_note|
     unless /^#{ENCRYPTED_DATA_HEADER}/.match?(secure_note.note)

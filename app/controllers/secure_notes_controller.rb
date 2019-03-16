@@ -4,7 +4,7 @@ class SecureNotesController < ApplicationController
 
   # GET /secure_notes
   def index
-    @secure_notes = SecureNote.all
+    @secure_notes = @current_user.secure_notes
   end
 
   def unlock
@@ -13,6 +13,10 @@ class SecureNotesController < ApplicationController
 
   # GET /secure_notes/1
   def show
+    if @secure_note.user.id != @current_user.id
+      head :forbidden
+      return
+    end
     @page_title = @secure_note.title
     @master_password = params[:master_password]
     @decrypted_note = @secure_note.decrypt_note(@master_password)
@@ -30,11 +34,22 @@ class SecureNotesController < ApplicationController
 
   # GET /secure_notes/1/edit
   def edit
+    @page_title = "Edit #{@secure_note.title}"
+    @master_password = params[:master_password] || session[:master_password]
+
+    if @master_password.nil? || @master_password.empty?
+      redirect_to unlock_secure_note_path(@secure_note)
+      return
+    end
+
+    session[:master_password] = nil
+    decrypt_data(@master_password)
   end
 
   # POST /secure_notes
   def create
     @secure_note = SecureNote.new(secure_note_params)
+    @secure_note.user = @current_user
 
     if master_password_error == :weak
       @secure_note.errors.add(:base, :master_password_weak)
@@ -54,13 +69,25 @@ class SecureNotesController < ApplicationController
 
   # PATCH/PUT /secure_notes/1
   def update
-    respond_to do |format|
-      if @secure_note.update(secure_note_params)
-        format.html { redirect_to @secure_note, notice: 'Secure note was successfully updated.' }
-        format.json { render :show, status: :ok, location: @secure_note }
+    if master_password_error == :weak
+      flash[:alert] = I18n.t('master_password_weak')
+      session[:master_password] = params[:old_master_password]
+      redirect_to edit_secure_note_path(@secure_note)
+    elsif master_password_error == :mismatch
+      flash[:alert] = I18n.t('master_password_mismatch')
+      session[:master_password] = params[:old_master_password]
+      redirect_to edit_secure_note_path(@secure_note)
+    else
+      @secure_note.title = params[:secure_note][:title]
+      @secure_note.note = params[:secure_note][:note]
+      @secure_note.encrypt_note(params[:master_password])
+
+      if @secure_note.save
+        redirect_to @secure_note, notice: 'Secure note was successfully updated.'
       else
-        format.html { render :edit }
-        format.json { render json: @secure_note.errors, status: :unprocessable_entity }
+        flash[:alert] = password.errors
+        session[:master_password] = params[:old_master_password]
+        redirect_to edit_secure_note_path(@secure_note)
       end
     end
   end
@@ -81,6 +108,22 @@ class SecureNotesController < ApplicationController
 
     def secure_note_params
       params.require(:secure_note).permit(:title, :note)
+    end
+
+    def decrypt_data(master_password)
+      if @secure_note.nil?
+        return
+      end
+
+      decrypted_note = @secure_note.decrypt_note(master_password)
+
+      if decrypted_note.nil?
+        flash[:notice] = I18n.t('invalid_master_password')
+        redirect_to unlock_secure_note_path(@secure_note)
+        return
+      end
+
+      @secure_note.note = decrypted_note
     end
 
     def master_password_error

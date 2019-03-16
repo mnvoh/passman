@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :validatable
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
+  has_many :passwords
+  has_many :secure_notes
 
   def set_preferences(prefs)
     if preferences.nil?

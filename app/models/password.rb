@@ -1,6 +1,7 @@
 class Password < ApplicationRecord
   include Security
   include Encryptable
+  belongs_to :user
 
   before_save do |password|
     unless /^#{ENCRYPTED_DATA_HEADER}/.match?(password.password)
